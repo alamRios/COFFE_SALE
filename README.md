@@ -4,7 +4,7 @@ Proyecto para POO cuyo objetivo principal es la gestión de cafeterias a nivel a
 
 Desarrollo de lógica de negocios en Spring MVC e interacción mediante plataforma Android. 
 
-#Pendientes
+# Pendientes
 
 Terminar de definir las entidades para los reportes. 
 Agregar funcionalidad al proyecto
