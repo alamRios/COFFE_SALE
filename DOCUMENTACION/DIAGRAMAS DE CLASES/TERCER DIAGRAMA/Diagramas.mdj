@@ -798,7 +798,7 @@
 									"containerExtending": false,
 									"left": 351,
 									"top": 156,
-									"width": 7,
+									"width": 7.22998046875,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -3678,7 +3678,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Plazas",
+											"text": "Plaza",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -7029,7 +7029,7 @@
 									"containerExtending": false,
 									"left": 396,
 									"top": 232,
-									"width": 7,
+									"width": 7.22998046875,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -13795,7 +13795,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Plazas",
+					"name": "Plaza",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
