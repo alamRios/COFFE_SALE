@@ -1,20 +1,20 @@
-package coffeSale.reportes;
+package coffeSale.model.dto.reportes;
 
 import java.util.Date;
 
-public class ReporteDelSistema extends ReporteFallo {
+public class ReporteDelSistemaDTO extends ReporteFalloDTO {
 	public String pantallaDeError; // En donde fue el fallo
 	
-	public ReporteDelSistema() {
+	public ReporteDelSistemaDTO() {
 		this(new Date(), "", "", "", "");
 	}
-	public ReporteDelSistema(Date fechaCreacion, String folioReporte,
+	public ReporteDelSistemaDTO(Date fechaCreacion, String folioReporte,
 			String observaciones, String descripcionFallo, String pantallaDeError) {
 		super(fechaCreacion, folioReporte, observaciones, descripcionFallo);
 		this.pantallaDeError = pantallaDeError; 
 	}
 
-	public ReporteDelSistema(ReporteDelSistema reporteSistema) {
+	public ReporteDelSistemaDTO(ReporteDelSistemaDTO reporteSistema) {
 		this(
 			reporteSistema.fechaCreacion,
 			reporteSistema.folioReporte, 

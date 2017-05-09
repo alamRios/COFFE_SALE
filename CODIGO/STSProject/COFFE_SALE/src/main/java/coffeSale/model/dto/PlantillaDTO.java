@@ -1,22 +1,22 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.ArrayList;
 
-public class Plantilla {
-	private ArrayList<Plaza> plazas; 
+public class PlantillaDTO {
+	private ArrayList<PlazaDTO> plazas; 
 	private String identificador; 
 	private int noPlazas;
 	
-	public Plantilla(){
+	public PlantillaDTO(){
 		this(new ArrayList<>(), "", 0);
 	}
-	public Plantilla(ArrayList<Plaza> plazas, String identificador, int noPlazas) {
+	public PlantillaDTO(ArrayList<PlazaDTO> plazas, String identificador, int noPlazas) {
 		super();
 		this.plazas = plazas;
 		this.identificador = identificador;
 		this.noPlazas = noPlazas;
 	}
-	public Plantilla(Plantilla plantilla){
+	public PlantillaDTO(PlantillaDTO plantilla){
 		this(
 			plantilla.plazas,
 			plantilla.identificador,
@@ -24,11 +24,11 @@ public class Plantilla {
 		);
 	}
 
-	public ArrayList<Plaza> getPlazas() {
+	public ArrayList<PlazaDTO> getPlazas() {
 		return plazas;
 	}
 
-	public void setPlazas(ArrayList<Plaza> plazas) {
+	public void setPlazas(ArrayList<PlazaDTO> plazas) {
 		this.plazas = plazas;
 	}
 

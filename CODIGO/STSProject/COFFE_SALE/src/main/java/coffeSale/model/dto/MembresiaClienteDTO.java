@@ -1,22 +1,22 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.Date;
 
-public class MembresiaCliente {
+public class MembresiaClienteDTO {
 	private String nombre;
 	private String noCliente;
 	private Date fechaAlta; 
 	
-	public MembresiaCliente(){
+	public MembresiaClienteDTO(){
 		this("", "", new Date());
 	}
-	public MembresiaCliente(String nombre, String noCliente, Date fechaAlta) {
+	public MembresiaClienteDTO(String nombre, String noCliente, Date fechaAlta) {
 		super();
 		this.nombre = nombre;
 		this.noCliente = noCliente;
 		this.fechaAlta = fechaAlta;
 	}
-	public MembresiaCliente(MembresiaCliente membresiaCliente){
+	public MembresiaClienteDTO(MembresiaClienteDTO membresiaCliente){
 		this(
 			membresiaCliente.nombre, 
 			membresiaCliente.noCliente,

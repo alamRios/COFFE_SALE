@@ -1,24 +1,24 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Inventario {
+public class InventarioDTO {
 	private Date fechaCreacion;
 	private String codigoInventario;
-	private ArrayList<Producto> productos;
+	private ArrayList<ProductoDTO> productos;
 	
-	public Inventario(){
+	public InventarioDTO(){
 		this(new Date(), "", new ArrayList<>());
 	}
-	public Inventario(Date fechaCreacion, String codigoInventario,
-			ArrayList<Producto> productos) {
+	public InventarioDTO(Date fechaCreacion, String codigoInventario,
+			ArrayList<ProductoDTO> productos) {
 		super();
 		this.fechaCreacion = fechaCreacion;
 		this.codigoInventario = codigoInventario;
 		this.productos = productos;
 	}
-	public Inventario(Inventario inventario){
+	public InventarioDTO(InventarioDTO inventario){
 		this(
 			inventario.fechaCreacion,
 			inventario.codigoInventario,
@@ -42,11 +42,11 @@ public class Inventario {
 		this.codigoInventario = codigoInventario;
 	}
 
-	public ArrayList<Producto> getProductos() {
+	public ArrayList<ProductoDTO> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(ArrayList<Producto> productos) {
+	public void setProductos(ArrayList<ProductoDTO> productos) {
 		this.productos = productos;
 	}
 

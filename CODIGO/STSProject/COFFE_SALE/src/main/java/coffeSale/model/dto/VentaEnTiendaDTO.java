@@ -1,18 +1,18 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class VentaEnTienda implements Venta{
-	private Empleado vendedor; 
-	private Gaveta gaveta;
+public class VentaEnTiendaDTO implements VentaDTO{
+	private EmpleadoDTO vendedor; 
+	private GavetaDTO gaveta;
 	private double montoTotal;
 	private Date momentoVenta;
 	
-	public VentaEnTienda(){
-		this(new Empleado(), new Gaveta(), 0.0, new Date());
+	public VentaEnTiendaDTO(){
+		this(new EmpleadoDTO(), new GavetaDTO(), 0.0, new Date());
 	}
-	public VentaEnTienda(Empleado vendedor, Gaveta gaveta, double montoTotal,
+	public VentaEnTiendaDTO(EmpleadoDTO vendedor, GavetaDTO gaveta, double montoTotal,
 			Date momentoVenta) {
 		super();
 		this.vendedor = vendedor;
@@ -20,7 +20,7 @@ public class VentaEnTienda implements Venta{
 		this.montoTotal = montoTotal;
 		this.momentoVenta = momentoVenta;
 	}
-	public VentaEnTienda(VentaEnTienda ventaEnTienda){
+	public VentaEnTiendaDTO(VentaEnTiendaDTO ventaEnTienda){
 		this(
 			ventaEnTienda.vendedor, 
 			ventaEnTienda.gaveta,
@@ -29,19 +29,19 @@ public class VentaEnTienda implements Venta{
 		);
 	}
 
-	public Empleado getVendedor() {
+	public EmpleadoDTO getVendedor() {
 		return vendedor;
 	}
 
-	public void setVendedor(Empleado vendedor) {
+	public void setVendedor(EmpleadoDTO vendedor) {
 		this.vendedor = vendedor;
 	}
 
-	public Gaveta getGaveta() {
+	public GavetaDTO getGaveta() {
 		return gaveta;
 	}
 
-	public void setGaveta(Gaveta gaveta) {
+	public void setGaveta(GavetaDTO gaveta) {
 		this.gaveta = gaveta;
 	}
 
@@ -69,14 +69,14 @@ public class VentaEnTienda implements Venta{
 	}
 
 	@Override
-	public void registrarVenta(double montoTotal, ArrayList<Producto> productos) {
+	public void registrarVenta(double montoTotal, ArrayList<ProductoDTO> productos) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void registrarVenta(double montoTotal,
-			ArrayList<Producto> productos, MembresiaCliente membresia) {
+			ArrayList<ProductoDTO> productos, MembresiaClienteDTO membresia) {
 		// TODO Auto-generated method stub
 		
 	} 	

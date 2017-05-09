@@ -1,21 +1,21 @@
-package coffeSale.reportes;
+package coffeSale.model.dto.reportes;
 
 import java.util.Date;
 
-public class ReporteFallo extends Reporte {
+public class ReporteFalloDTO extends ReporteDTO {
 	protected String descripcionFallo;
 	
-	public ReporteFallo(){
+	public ReporteFalloDTO(){
 		this(
 			new Date(), 
 			"", "", ""
 		);
 	}
-	public ReporteFallo(Date fechaCreacion, String folioReporte, String observaciones, String descripcionFallo) {
+	public ReporteFalloDTO(Date fechaCreacion, String folioReporte, String observaciones, String descripcionFallo) {
 		super(fechaCreacion, folioReporte, observaciones);
 		this.descripcionFallo = descripcionFallo;
 	}
-	public ReporteFallo(ReporteFallo reporteFallo){
+	public ReporteFalloDTO(ReporteFalloDTO reporteFallo){
 		this(
 			reporteFallo.fechaCreacion, 
 			reporteFallo.folioReporte, 

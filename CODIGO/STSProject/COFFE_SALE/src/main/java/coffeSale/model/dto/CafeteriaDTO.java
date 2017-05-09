@@ -1,32 +1,34 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cafeteria {
-	private Plantilla plantilla; 
-	private ArrayList<Gaveta> gavetas; 
-	private ArrayList<Venta> ventas; 
-	private ArrayList<Habitacion> habitaciones; 
-	private Inventario inventario; 
-	private CajaFuerte cajaFuerte; 
+public class CafeteriaDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private PlantillaDTO plantilla; 
+	private ArrayList<GavetaDTO> gavetas; 
+	private ArrayList<VentaDTO> ventas; 
+	private ArrayList<HabitacionDTO> habitaciones; 
+	private InventarioDTO inventario; 
+	private CajaFuerteDTO cajaFuerte; 
 	private String nombre; 
 	private String linea; 
 	private String identificador;
 	
-	public Cafeteria(){
+	public CafeteriaDTO(){
 		this(
-			new Plantilla(), 
+			new PlantillaDTO(), 
 			new ArrayList<>(),
 			new ArrayList<>(),
 			new ArrayList<>(),
-			new Inventario(), 
-			new CajaFuerte(),
+			new InventarioDTO(), 
+			new CajaFuerteDTO(),
 			"", "", ""
 		);
 	}
-	public Cafeteria(Plantilla plantilla, ArrayList<Gaveta> gavetas,
-			ArrayList<Venta> ventas, ArrayList<Habitacion> habitaciones,
-			Inventario inventario, CajaFuerte cajaFuerte, String nombre,
+	public CafeteriaDTO(PlantillaDTO plantilla, ArrayList<GavetaDTO> gavetas,
+			ArrayList<VentaDTO> ventas, ArrayList<HabitacionDTO> habitaciones,
+			InventarioDTO inventario, CajaFuerteDTO cajaFuerte, String nombre,
 			String linea, String identificador) {
 		super();
 		this.plantilla = plantilla;
@@ -39,7 +41,7 @@ public class Cafeteria {
 		this.linea = linea;
 		this.identificador = identificador;
 	}
-	public Cafeteria(Cafeteria cafeteria){
+	public CafeteriaDTO(CafeteriaDTO cafeteria){
 		this(
 			cafeteria.plantilla, 
 			cafeteria.gavetas, 
@@ -53,51 +55,51 @@ public class Cafeteria {
 		);
 	}
 
-	public Plantilla getPlantilla() {
+	public PlantillaDTO getPlantilla() {
 		return plantilla;
 	}
 
-	public void setPlantilla(Plantilla plantilla) {
+	public void setPlantilla(PlantillaDTO plantilla) {
 		this.plantilla = plantilla;
 	}
 
-	public ArrayList<Gaveta> getGavetas() {
+	public ArrayList<GavetaDTO> getGavetas() {
 		return gavetas;
 	}
 
-	public void setGavetas(ArrayList<Gaveta> gavetas) {
+	public void setGavetas(ArrayList<GavetaDTO> gavetas) {
 		this.gavetas = gavetas;
 	}
 
-	public ArrayList<Venta> getVentas() {
+	public ArrayList<VentaDTO> getVentas() {
 		return ventas;
 	}
 
-	public void setVentas(ArrayList<Venta> ventas) {
+	public void setVentas(ArrayList<VentaDTO> ventas) {
 		this.ventas = ventas;
 	}
 
-	public ArrayList<Habitacion> getHabitaciones() {
+	public ArrayList<HabitacionDTO> getHabitaciones() {
 		return habitaciones;
 	}
 
-	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+	public void setHabitaciones(ArrayList<HabitacionDTO> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
 
-	public Inventario getInventario() {
+	public InventarioDTO getInventario() {
 		return inventario;
 	}
 
-	public void setInventario(Inventario inventario) {
+	public void setInventario(InventarioDTO inventario) {
 		this.inventario = inventario;
 	}
 
-	public CajaFuerte getCajaFuerte() {
+	public CajaFuerteDTO getCajaFuerte() {
 		return cajaFuerte;
 	}
 
-	public void setCajaFuerte(CajaFuerte cajaFuerte) {
+	public void setCajaFuerte(CajaFuerteDTO cajaFuerte) {
 		this.cajaFuerte = cajaFuerte;
 	}
 

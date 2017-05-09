@@ -1,20 +1,20 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
-public class Plaza {
-	private Empleado empleado; 
+public class PlazaDTO {
+	private EmpleadoDTO empleado; 
 	private String identificador;
 	private boolean activa;
 	
-	public Plaza(){
-		this(new Empleado(), "", true);
+	public PlazaDTO(){
+		this(new EmpleadoDTO(), "", true);
 	}
-	public Plaza(Empleado empleado, String identificador, boolean activa) {
+	public PlazaDTO(EmpleadoDTO empleado, String identificador, boolean activa) {
 		super();
 		this.empleado = empleado;
 		this.identificador = identificador;
 		this.activa = activa;
 	}
-	public Plaza(Plaza plaza){
+	public PlazaDTO(PlazaDTO plaza){
 		this(
 			plaza.empleado,
 			plaza.identificador,
@@ -22,11 +22,11 @@ public class Plaza {
 		);
 	}
 
-	public Empleado getEmpleado() {
+	public EmpleadoDTO getEmpleado() {
 		return empleado;
 	}
 
-	public void setEmpleado(Empleado empleado) {
+	public void setEmpleado(EmpleadoDTO empleado) {
 		this.empleado = empleado;
 	}
 

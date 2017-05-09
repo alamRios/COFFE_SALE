@@ -1,24 +1,24 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class VentaEnLinea implements Venta{
+public class VentaEnLineaDTO implements VentaDTO{
 	private String noVenta;
 	private Date momentoVenta;
 	private String codigoAutorizacion;
 	
-	public VentaEnLinea(){
+	public VentaEnLineaDTO(){
 		this("", new Date(), "");
 	}
-	public VentaEnLinea(String noVenta, Date momentoVenta,
+	public VentaEnLineaDTO(String noVenta, Date momentoVenta,
 			String codigoAutorizacion) {
 		super();
 		this.noVenta = noVenta;
 		this.momentoVenta = momentoVenta;
 		this.codigoAutorizacion = codigoAutorizacion;
 	}
-	public VentaEnLinea(VentaEnLinea ventaEnLinea){
+	public VentaEnLineaDTO(VentaEnLineaDTO ventaEnLinea){
 		this(
 			ventaEnLinea.noVenta,
 			ventaEnLinea.momentoVenta,
@@ -58,13 +58,13 @@ public class VentaEnLinea implements Venta{
 	}
 
 	@Override
-	public void registrarVenta(double montoTotal, ArrayList<Producto> productos) {
+	public void registrarVenta(double montoTotal, ArrayList<ProductoDTO> productos) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void registrarVenta(double montoTotal,
-			ArrayList<Producto> productos, MembresiaCliente membresia) {
+			ArrayList<ProductoDTO> productos, MembresiaClienteDTO membresia) {
 		// TODO Auto-generated method stub
 	} 
 }

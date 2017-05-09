@@ -1,23 +1,23 @@
-package coffeSale.reportes;
+package coffeSale.model.dto.reportes;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import coffeSale.entidades.Venta;
+import coffeSale.model.dto.VentaDTO;
 
-public class ReporteDeVentas extends Reporte{
-	protected ArrayList<Venta> ventasEnReporte;
+public class ReporteDeVentasDTO extends ReporteDTO{
+	protected ArrayList<VentaDTO> ventasEnReporte;
 	protected double montoTotal; 
 	
-	public ReporteDeVentas(){
+	public ReporteDeVentasDTO(){
 		this(new Date(), "", "",new ArrayList<>(), 0.0); 
 	}
-	public ReporteDeVentas(Date fechaCreacion, String folioReporte, String observaciones,ArrayList<Venta> ventasEnReporte, double montoTotal) {
+	public ReporteDeVentasDTO(Date fechaCreacion, String folioReporte, String observaciones,ArrayList<VentaDTO> ventasEnReporte, double montoTotal) {
 		super(fechaCreacion, folioReporte, observaciones);
 		this.ventasEnReporte = ventasEnReporte;
 		this.montoTotal = montoTotal; 
 	}
-	public ReporteDeVentas(ReporteDeVentas reporteDeVentas){
+	public ReporteDeVentasDTO(ReporteDeVentasDTO reporteDeVentas){
 		this(
 			reporteDeVentas.fechaCreacion, 
 			reporteDeVentas.folioReporte, 
@@ -27,11 +27,11 @@ public class ReporteDeVentas extends Reporte{
 		);
 	}
 
-	public ArrayList<Venta> getVentasEnReporte() {
+	public ArrayList<VentaDTO> getVentasEnReporte() {
 		return ventasEnReporte;
 	}
 
-	public void setVentasEnReporte(ArrayList<Venta> ventasEnReporte) {
+	public void setVentasEnReporte(ArrayList<VentaDTO> ventasEnReporte) {
 		this.ventasEnReporte = ventasEnReporte;
 	}
 	

@@ -1,22 +1,22 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
-public class Habitacion {
+public class HabitacionDTO {
 	private String uso;
 	private double alto; 
 	private double ancho; 
 	private double largo;
 	
-	public Habitacion(){
+	public HabitacionDTO(){
 		this("", 0.0, 0.0, 0.0);
 	}
-	public Habitacion(String uso, double alto, double ancho, double largo) {
+	public HabitacionDTO(String uso, double alto, double ancho, double largo) {
 		super();
 		this.uso = uso;
 		this.alto = alto;
 		this.ancho = ancho;
 		this.largo = largo;
 	}
-	public Habitacion(Habitacion habitacion){
+	public HabitacionDTO(HabitacionDTO habitacion){
 		this(
 			habitacion.uso,
 			habitacion.alto,

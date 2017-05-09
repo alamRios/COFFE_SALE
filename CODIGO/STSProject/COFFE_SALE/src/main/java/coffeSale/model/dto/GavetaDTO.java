@@ -1,20 +1,20 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.Date;
 
-public class Gaveta {
+public class GavetaDTO {
 	private double fondo; 
 	private Date ultimaApertura;
 	
-	public Gaveta(){
+	public GavetaDTO(){
 		this(0.0, new Date());
 	}
-	public Gaveta(double fondo, Date ultimaApertura) {
+	public GavetaDTO(double fondo, Date ultimaApertura) {
 		super();
 		this.fondo = fondo;
 		this.ultimaApertura = ultimaApertura;
 	}
-	public Gaveta(Gaveta gaveta){
+	public GavetaDTO(GavetaDTO gaveta){
 		this(
 			gaveta.fondo,
 			gaveta.ultimaApertura

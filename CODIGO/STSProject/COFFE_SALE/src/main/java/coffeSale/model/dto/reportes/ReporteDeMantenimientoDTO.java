@@ -1,22 +1,22 @@
-package coffeSale.reportes;
+package coffeSale.model.dto.reportes;
 
 import java.util.Date;
 
-public class ReporteDeMantenimiento extends ReporteFallo {
+public class ReporteDeMantenimientoDTO extends ReporteFalloDTO {
 	private String areaDeMantenimiento; 
 	private String especificacionTecnica;
 	
-	public ReporteDeMantenimiento(){
+	public ReporteDeMantenimientoDTO(){
 		this(new Date(), "", "", "", "", "");
 	}
-	public ReporteDeMantenimiento(Date fechaCreacion, String folioReporte, 
+	public ReporteDeMantenimientoDTO(Date fechaCreacion, String folioReporte, 
 			String observaciones, String descripcionFallo, 
 			String areaDeMantenimiento, String especificacionTecnica) {
 		super(fechaCreacion, folioReporte, observaciones, descripcionFallo);
 		this.areaDeMantenimiento = areaDeMantenimiento;
 		this.especificacionTecnica = especificacionTecnica;
 	} 
-	public ReporteDeMantenimiento(ReporteDeMantenimiento rdm){
+	public ReporteDeMantenimientoDTO(ReporteDeMantenimientoDTO rdm){
 		this(rdm.fechaCreacion, rdm.folioReporte,rdm.observaciones,
 				rdm.descripcionFallo, rdm.areaDeMantenimiento, 
 				rdm.especificacionTecnica);

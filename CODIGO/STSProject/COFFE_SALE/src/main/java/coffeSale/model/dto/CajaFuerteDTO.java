@@ -1,24 +1,24 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
 import java.util.Date;
 
-public class CajaFuerte {
+public class CajaFuerteDTO {
 	private double fondo; 
 	private double montoAlmacenado; 
 	private Date fechaRevision;
 	
-	public CajaFuerte(){
+	public CajaFuerteDTO(){
 		this(0.0, 0.0, new Date());
 	}
 	
-	public CajaFuerte(double fondo, double montoAlmacenado, Date fechaRevision) {
+	public CajaFuerteDTO(double fondo, double montoAlmacenado, Date fechaRevision) {
 		super();
 		this.fondo = fondo;
 		this.montoAlmacenado = montoAlmacenado;
 		this.fechaRevision = fechaRevision;
 	}
 	
-	public CajaFuerte(CajaFuerte cajaFuerte){
+	public CajaFuerteDTO(CajaFuerteDTO cajaFuerte){
 		this(
 			cajaFuerte.fondo,
 			cajaFuerte.montoAlmacenado,

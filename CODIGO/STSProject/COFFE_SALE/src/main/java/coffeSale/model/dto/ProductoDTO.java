@@ -1,15 +1,15 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
-public class Producto {
+public class ProductoDTO {
 	private String nombre; 
 	private String identificador; 
 	private double costo; 
 	private String proveedor;
 	
-	public Producto(){
+	public ProductoDTO(){
 		this("", "", 0.0, "");
 	}
-	public Producto(String nombre, String identificador, double costo,
+	public ProductoDTO(String nombre, String identificador, double costo,
 			String proveedor) {
 		super();
 		this.nombre = nombre;
@@ -17,7 +17,7 @@ public class Producto {
 		this.costo = costo;
 		this.proveedor = proveedor;
 	}
-	public Producto(Producto producto){
+	public ProductoDTO(ProductoDTO producto){
 		this(
 			producto.nombre,
 			producto.identificador,

@@ -1,24 +1,24 @@
-package coffeSale.reportes;
+package coffeSale.model.dto.reportes;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import coffeSale.entidades.Venta;
+import coffeSale.model.dto.VentaDTO;
 
-public class ReporteDeVentasDelAnno extends ReporteDeVentas {
+public class ReporteDeVentasDelAnnoDTO extends ReporteDeVentasDTO {
 	private String anno;
 	
-	public ReporteDeVentasDelAnno(){
+	public ReporteDeVentasDelAnnoDTO(){
 		this(new Date(), "", "", new ArrayList<>(), 0.0, "");
 	}
-	public ReporteDeVentasDelAnno(Date fechaCreacion, String folioReporte,
-			String observaciones, ArrayList<Venta> ventasEnReporte, 
+	public ReporteDeVentasDelAnnoDTO(Date fechaCreacion, String folioReporte,
+			String observaciones, ArrayList<VentaDTO> ventasEnReporte, 
 			double montoTotal,String anno) {
 		super(fechaCreacion,folioReporte,observaciones,
 				ventasEnReporte,montoTotal);
 		this.anno = anno;
 	} 
-	public ReporteDeVentasDelAnno(ReporteDeVentasDelAnno rdvda){
+	public ReporteDeVentasDelAnnoDTO(ReporteDeVentasDelAnnoDTO rdvda){
 		this(
 			rdvda.fechaCreacion, 
 			rdvda.folioReporte,

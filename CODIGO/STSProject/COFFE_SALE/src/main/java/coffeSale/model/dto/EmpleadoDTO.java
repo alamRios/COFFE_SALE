@@ -1,16 +1,16 @@
-package coffeSale.entidades;
+package coffeSale.model.dto;
 
-public class Empleado {
+public class EmpleadoDTO {
 	private String nombre; 
 	private String apPaterno; 
 	private String apMaterno; 
 	private String codigoEmpleado;
 	
-	public Empleado(){
+	public EmpleadoDTO(){
 		this("","","","");
 	}
 	
-	public Empleado(String nombre, String apPaterno, String apMaterno,
+	public EmpleadoDTO(String nombre, String apPaterno, String apMaterno,
 			String codigoEmpleado) {
 		super();
 		this.nombre = nombre;
@@ -19,7 +19,7 @@ public class Empleado {
 		this.codigoEmpleado = codigoEmpleado;
 	}
 	
-	public Empleado(Empleado empleado){
+	public EmpleadoDTO(EmpleadoDTO empleado){
 		this(
 			empleado.nombre,
 			empleado.apPaterno,
