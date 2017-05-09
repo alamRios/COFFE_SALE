@@ -3,7 +3,7 @@ package coffeSale.reportes;
 import java.util.Date;
 
 public class ReporteFallo extends Reporte {
-	private String descripcionFallo;
+	protected String descripcionFallo;
 	
 	public ReporteFallo(){
 		this(
@@ -32,4 +32,10 @@ public class ReporteFallo extends Reporte {
 		this.descripcionFallo = descripcionFallo;
 	}
 	
+	@Override
+	public String toString() {
+		return "ReporteFallo [descripcionFallo=" + descripcionFallo
+				+ ", fechaCreacion=" + fechaCreacion + ", folioReporte="
+				+ folioReporte + ", observaciones=" + observaciones + "]";
+	}
 }
