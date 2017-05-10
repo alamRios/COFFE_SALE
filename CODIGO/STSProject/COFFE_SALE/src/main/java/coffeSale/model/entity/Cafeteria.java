@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 public class Cafeteria implements Serializable{
 	private static final long serialVersionUID = -9019107116825708383L;
+	
 	private int id; 
 	private String nombre; 
-	private boolean acepta_membresias; 
+	private boolean aceptaMembresias; 
 	private String estado; 
 	private String email; 
 	private int direccionId;
@@ -28,10 +29,10 @@ public class Cafeteria implements Serializable{
 		this.nombre = nombre;
 	}
 	public boolean isAcepta_membresias() {
-		return acepta_membresias;
+		return aceptaMembresias;
 	}
 	public void setAcepta_membresias(boolean acepta_membresias) {
-		this.acepta_membresias = acepta_membresias;
+		this.aceptaMembresias = acepta_membresias;
 	}
 	public String getEstado() {
 		return estado;
@@ -61,7 +62,7 @@ public class Cafeteria implements Serializable{
 	@Override
 	public String toString() {
 		return "Cafeteria{id=" + id + ", nombre=" + nombre
-				+ ", acepta_membresias=" + acepta_membresias + ", estado="
+				+ ", aceptaMembresias=" + aceptaMembresias + ", estado="
 				+ estado + ", email=" + email + ", direccionId=" + direccionId
 				+ ", marcaId=" + marcaId + "}";
 	}

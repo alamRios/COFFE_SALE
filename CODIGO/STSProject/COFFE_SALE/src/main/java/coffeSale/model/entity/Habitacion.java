@@ -10,7 +10,8 @@ public class Habitacion implements Serializable{
 	private String uso; 
 	private float ancho; 
 	private float largo; 
-	
+	private int cafeteriaId; 
+
 	public Habitacion(){
 	}
 
@@ -53,11 +54,21 @@ public class Habitacion implements Serializable{
 	public void setLargo(float largo) {
 		this.largo = largo;
 	}
+	
+	public int getCafeteriaId() {
+		return cafeteriaId;
+	}
+
+	public void setCafeteriaId(int cafeteriaId) {
+		this.cafeteriaId = cafeteriaId;
+	}
 
 	@Override
 	public String toString() {
 		return "Habitacion{id=" + id + ", descripcion=" + descripcion
 				+ ", uso=" + uso + ", ancho=" + ancho + ", largo=" + largo
-				+ "}";
+				+ ", cafeteria=" + cafeteriaId + "}";
 	}
+
+	
 }
