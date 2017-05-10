@@ -2,24 +2,25 @@ package coffeSale.model.dto;
 
 public class HabitacionDTO {
 	private String uso;
-	private double alto; 
+	private String descripcion;
+
 	private double ancho; 
 	private double largo;
 	
 	public HabitacionDTO(){
-		this("", 0.0, 0.0, 0.0);
+		this("", "", 0.0, 0.0);
 	}
-	public HabitacionDTO(String uso, double alto, double ancho, double largo) {
+	public HabitacionDTO(String uso, String descripcion, double ancho, double largo) {
 		super();
 		this.uso = uso;
-		this.alto = alto;
+		this.descripcion = descripcion; 
 		this.ancho = ancho;
 		this.largo = largo;
 	}
 	public HabitacionDTO(HabitacionDTO habitacion){
 		this(
 			habitacion.uso,
-			habitacion.alto,
+			habitacion.descripcion,
 			habitacion.ancho,
 			habitacion.largo
 		);
@@ -33,12 +34,12 @@ public class HabitacionDTO {
 		this.uso = uso;
 	}
 
-	public double getAlto() {
-		return alto;
+	public String getDescripcion() {
+		return descripcion;
 	}
-
-	public void setAlto(double alto) {
-		this.alto = alto;
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public double getAncho() {
@@ -56,10 +57,11 @@ public class HabitacionDTO {
 	public void setLargo(double largo) {
 		this.largo = largo;
 	}
-
 	@Override
 	public String toString() {
-		return "Habitacion [uso=" + uso + ", alto=" + alto + ", ancho=" + ancho
-				+ ", largo=" + largo + "]";
-	} 
+		return "HabitacionDTO{uso=" + uso + ", descripcion=" + descripcion
+				+ ", ancho=" + ancho + ", largo=" + largo + "}";
+	}
+	
+	
 }
