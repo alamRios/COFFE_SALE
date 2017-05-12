@@ -6,5 +6,4 @@ Desarrollo de lógica de negocios en Spring MVC e interacción mediante platafor
 
 # Pendientes
 
-Terminar de definir las entidades para los reportes. 
 Agregar funcionalidad al proyecto
