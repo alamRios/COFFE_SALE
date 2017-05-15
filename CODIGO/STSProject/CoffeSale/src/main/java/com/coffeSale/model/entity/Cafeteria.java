@@ -2,15 +2,39 @@ package com.coffeSale.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CAFETERIA")
 public class Cafeteria implements Serializable{
 	private static final long serialVersionUID = -9019107116825708383L;
 	
+	@Id
+	@Column(name="CAFETERIA_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
+	
+	@Column(name="CAFETERIA_NOMBRE")
 	private String nombre; 
+	
+	@Column(name="CAFETERIA_ACEPTA_MEMBRESIAS")
 	private boolean aceptaMembresias; 
+	
+	@Column(name="CAFETERIA_ESTADO")
 	private String estado; 
+	
+	@Column(name="CAFETERIA_EMAIL")
 	private String email; 
+	
+	@Column(name="CAFETERIA_DIRECCION")
 	private int direccionId;
+	
+	@Column(name="CAFETERIA_MARCA")
 	private int marcaId;
 	
 	public Cafeteria(){
