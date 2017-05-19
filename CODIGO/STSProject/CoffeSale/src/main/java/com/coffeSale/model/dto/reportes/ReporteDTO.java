@@ -51,4 +51,16 @@ public class ReporteDTO {
 		return "Reporte [fechaCreacion=" + fechaCreacion + ", folioReporte="
 				+ folioReporte + ", observaciones=" + observaciones + "]";
 	}	
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDTO){
+				ReporteDTO reporte = (ReporteDTO) obj; 
+				if(reporte.fechaCreacion.equals(this.fechaCreacion)
+					&& reporte.folioReporte.equals(this.folioReporte)
+					&& reporte.observaciones.equals(this.observaciones))
+					return true; 
+			}
+		}return false; 
+	}
 }

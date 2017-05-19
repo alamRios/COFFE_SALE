@@ -45,4 +45,14 @@ public class ReporteDeVentasDelDiaDTO extends ReporteDeVentasDTO{
 				+ ", fechaCreacion=" + fechaCreacion + ", folioReporte="
 				+ folioReporte + ", observaciones=" + observaciones + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDeVentasDelDiaDTO){
+				ReporteDeVentasDelDiaDTO reporte = (ReporteDeVentasDelDiaDTO) obj; 
+				if(reporte.dia.equals(this.dia))
+					return true; 
+			}
+		}return false; 
+	}
 }

@@ -38,4 +38,14 @@ public class ReporteDelSistemaDTO extends ReporteFalloDTO {
 				+ fechaCreacion + ", folioReporte=" + folioReporte
 				+ ", observaciones=" + observaciones + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDelSistemaDTO){
+				ReporteDelSistemaDTO reporte = (ReporteDelSistemaDTO) obj; 
+				if(reporte.pantallaDeError.equals(this.pantallaDeError))
+					return true; 
+			}
+		}return false; 
+	}
 }

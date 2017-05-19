@@ -53,4 +53,14 @@ public class ReporteDeVentasDelMesDTO extends ReporteDeVentasDTO {
 				+ ", folioReporte=" + folioReporte + ", observaciones="
 				+ observaciones + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDeVentasDelMesDTO){
+				ReporteDeVentasDelMesDTO reporte = (ReporteDeVentasDelMesDTO) obj; 
+				if(reporte.anno.equals(this.anno) && reporte.mes.equals(this.mes))
+					return true; 
+			}
+		}return false; 
+	}
 }

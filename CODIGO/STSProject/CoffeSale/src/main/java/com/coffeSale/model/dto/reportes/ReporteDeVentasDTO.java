@@ -50,4 +50,20 @@ public class ReporteDeVentasDTO extends ReporteDTO{
 				+ fechaCreacion + ", folioReporte=" + folioReporte
 				+ ", observaciones=" + observaciones + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDeVentasDTO){
+				ReporteDeVentasDTO reporte = (ReporteDeVentasDTO) obj; 
+				if(reporte.montoTotal == this.montoTotal){
+					for(VentaDTO venta : reporte.ventasEnReporte){
+						if(!this.ventasEnReporte.contains(venta)){
+							return false;
+						}
+						return true; 
+					}
+				}
+			}
+		}return false; 
+	}
 }

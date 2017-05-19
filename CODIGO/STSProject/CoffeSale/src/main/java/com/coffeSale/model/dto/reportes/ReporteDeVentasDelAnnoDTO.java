@@ -43,4 +43,14 @@ public class ReporteDeVentasDelAnnoDTO extends ReporteDeVentasDTO {
 				+ ", fechaCreacion=" + fechaCreacion + ", folioReporte="
 				+ folioReporte + ", observaciones=" + observaciones + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDeVentasDelAnnoDTO){
+				ReporteDeVentasDelAnnoDTO reporte = (ReporteDeVentasDelAnnoDTO) obj; 
+				if(reporte.anno.equals(this.anno))
+					return true; 
+			}
+		}return false;
+	}
 }

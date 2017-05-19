@@ -44,4 +44,15 @@ public class ReporteDeMantenimientoDTO extends ReporteFalloDTO {
 				+ ", folioReporte=" + folioReporte + ", observaciones="
 				+ observaciones + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ReporteDeMantenimientoDTO){
+				ReporteDeMantenimientoDTO reporte = (ReporteDeMantenimientoDTO) obj; 
+				if(reporte.areaDeMantenimiento.equals(this.areaDeMantenimiento)
+					&& reporte.especificacionTecnica.equals(this.especificacionTecnica))
+					return true; 
+			}
+		}return false; 
+	}
 }
