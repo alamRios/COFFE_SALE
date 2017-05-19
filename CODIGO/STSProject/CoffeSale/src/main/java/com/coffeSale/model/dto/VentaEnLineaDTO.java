@@ -51,13 +51,7 @@ public class VentaEnLineaDTO implements VentaDTO{
 	public void setCodigoAutorizacion(String codigoAutorizacion) {
 		this.codigoAutorizacion = codigoAutorizacion;
 	}
-
-	@Override
-	public String toString() {
-		return "VentaEnLinea [noVenta=" + noVenta + ", momentoVenta="
-				+ momentoVenta + ", codigoAutorizacion=" + codigoAutorizacion
-				+ "]";
-	}
+	
 
 	@Override
 	public void registrarVenta(double montoTotal, ArrayList<ProductoDTO> productos) {
@@ -69,4 +63,24 @@ public class VentaEnLineaDTO implements VentaDTO{
 			ArrayList<ProductoDTO> productos, MembresiaClienteDTO membresia) {
 		// TODO Auto-generated method stub
 	} 
+
+	@Override
+	public String toString() {
+		return "VentaEnLinea [noVenta=" + noVenta + ", momentoVenta="
+				+ momentoVenta + ", codigoAutorizacion=" + codigoAutorizacion
+				+ "]";
+	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof VentaEnLineaDTO){
+				VentaEnLineaDTO venta = (VentaEnLineaDTO) obj; 
+				if(venta.codigoAutorizacion.equals(this.codigoAutorizacion)
+					&& venta.momentoVenta.equals(this.momentoVenta)
+					&& venta.noVenta.equals(this.noVenta))
+					return true; 
+			}
+		}return false; 
+	}
+
 }

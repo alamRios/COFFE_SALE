@@ -66,4 +66,18 @@ public class EmpleadoDTO {
 				+ ", apMaterno=" + apMaterno + ", codigoEmpleado="
 				+ codigoEmpleado + "]";
 	} 
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof EmpleadoDTO){
+				EmpleadoDTO empleado = (EmpleadoDTO) obj; 
+				if(empleado.codigoEmpleado.equals(this.codigoEmpleado)
+					&& empleado.nombre.equals(this.nombre)
+					&& empleado.apMaterno.equals(this.apMaterno)
+					&& empleado.apPaterno.equals(this.apPaterno))
+					return true; 
+			}
+		}
+		return false; 
+	}
 }

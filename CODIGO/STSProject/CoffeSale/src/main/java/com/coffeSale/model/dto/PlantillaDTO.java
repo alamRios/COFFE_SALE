@@ -50,7 +50,22 @@ public class PlantillaDTO {
 
 	@Override
 	public String toString() {
-		return "Plantilla [plazas=" + plazas + ", identificador="
-				+ identificador + ", noPlazas=" + noPlazas + "]";
-	} 
+		return "PlantillaDTO{plazas=" + plazas + ", identificador="
+				+ identificador + ", noPlazas=" + noPlazas + "}";
+	}
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof PlantillaDTO){
+				PlantillaDTO plantilla = (PlantillaDTO)obj; 
+				if(plantilla.identificador.equals(this.identificador)
+					&& plantilla.noPlazas == this.noPlazas){
+					for(PlazaDTO plaza : plantilla.plazas)
+						if(!this.plazas.contains(plaza)){
+							return false;
+						}
+					return true; 
+				}					
+			}				
+		}return false; 
+	}
 }

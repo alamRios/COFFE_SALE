@@ -136,4 +136,32 @@ public class CafeteriaDTO implements Serializable{
 				+ ", nombre=" + nombre + ", linea=" + linea
 				+ ", identificador=" + identificador + "]";
 	} 	
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof CafeteriaDTO){
+				CafeteriaDTO cafeteria = (CafeteriaDTO) obj; 
+				if(cafeteria.cajaFuerte.equals(this.cajaFuerte)
+					&& cafeteria.identificador.equals(this.identificador)
+					&& cafeteria.inventario.equals(this.inventario)
+					&& cafeteria.linea.equals(this.linea)
+					&& cafeteria.nombre.equals(this.nombre)
+					&& cafeteria.plantilla.equals(this.plantilla)){
+					for(GavetaDTO gaveta : cafeteria.gavetas)
+						if(!this.gavetas.contains(gaveta))
+							return false;
+					for(HabitacionDTO habitacion : cafeteria.habitaciones)
+						if(!this.habitaciones.contains(habitacion))
+							return false; 
+					for(VentaDTO venta : cafeteria.ventas)
+						if(!this.ventas.contains(venta))
+							return false;					
+					return true;
+				}
+			}
+		}
+		return false; 
+	}
+	
+	
 }

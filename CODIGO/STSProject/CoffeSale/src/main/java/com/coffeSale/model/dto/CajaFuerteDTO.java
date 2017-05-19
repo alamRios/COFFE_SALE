@@ -55,4 +55,17 @@ public class CajaFuerteDTO {
 		return "CajaFuerte [fondo=" + fondo + ", montoAlmacenado="
 				+ montoAlmacenado + ", fechaRevision=" + fechaRevision + "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof CajaFuerteDTO){
+				CajaFuerteDTO cajaFuerte = (CajaFuerteDTO) obj; 
+				if(cajaFuerte.fechaRevision.equals(this.fechaRevision)
+					&& cajaFuerte.fondo == this.fondo
+					&& cajaFuerte.montoAlmacenado == this.montoAlmacenado)
+					return true; 
+			}
+		}
+		return false; 
+	}
 }

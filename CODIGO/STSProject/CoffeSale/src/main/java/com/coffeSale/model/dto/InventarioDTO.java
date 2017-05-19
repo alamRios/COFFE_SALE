@@ -56,4 +56,20 @@ public class InventarioDTO {
 				+ ", codigoInventario=" + codigoInventario + ", productos="
 				+ productos + "]";
 	} 
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof InventarioDTO){
+				InventarioDTO inventario = (InventarioDTO) obj; 
+				if(inventario.codigoInventario.equals(this.codigoInventario)
+					&& inventario.fechaCreacion.equals(this.fechaCreacion)){
+					for(ProductoDTO producto : inventario.productos)
+						if(!this.productos.contains(producto))
+							return false; 
+					return true; 
+				}
+			}
+		}
+		return false; 
+	}
 }

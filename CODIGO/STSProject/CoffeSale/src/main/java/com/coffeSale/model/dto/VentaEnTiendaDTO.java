@@ -66,6 +66,17 @@ public class VentaEnTiendaDTO implements VentaDTO{
 	public void setMomentoVenta(Date momentoVenta) {
 		this.momentoVenta = momentoVenta;
 	}
+	
+	@Override
+	public void registrarVenta(double montoTotal, ArrayList<ProductoDTO> productos) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void registrarVenta(double montoTotal,
+			ArrayList<ProductoDTO> productos, MembresiaClienteDTO membresia) {
+		// TODO Auto-generated method stub
+	} 	
 
 	@Override
 	public String toString() {
@@ -73,17 +84,17 @@ public class VentaEnTiendaDTO implements VentaDTO{
 				+ ", montoTotal=" + montoTotal + ", momentoVenta="
 				+ momentoVenta + "]";
 	}
-
-	@Override
-	public void registrarVenta(double montoTotal, ArrayList<ProductoDTO> productos) {
-		// TODO Auto-generated method stub
-		
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof VentaEnTiendaDTO){
+				VentaEnTiendaDTO venta = (VentaEnTiendaDTO) obj; 
+				if(venta.gaveta.equals(this.gaveta)
+					&& venta.momentoVenta.equals(this.momentoVenta)
+					&& venta.montoTotal == this.montoTotal
+					&& venta.vendedor.equals(this.vendedor))
+					return true; 
+			}
+		}return false; 
 	}
-
-	@Override
-	public void registrarVenta(double montoTotal,
-			ArrayList<ProductoDTO> productos, MembresiaClienteDTO membresia) {
-		// TODO Auto-generated method stub
-		
-	} 	
 }

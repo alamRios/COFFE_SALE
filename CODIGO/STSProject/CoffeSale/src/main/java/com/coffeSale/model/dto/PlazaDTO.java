@@ -51,4 +51,16 @@ public class PlazaDTO {
 		return "Plaza [empleado=" + empleado + ", identificador="
 				+ identificador + ", activa=" + activa + "]";
 	} 
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof PlazaDTO){
+				PlazaDTO plaza = (PlazaDTO) obj; 
+				if(plaza.activa == this.activa
+					&& plaza.empleado.equals(this.empleado)
+					&& plaza.identificador.equals(this.identificador))
+					return true; 
+			}
+		}return false; 
+	}
 }

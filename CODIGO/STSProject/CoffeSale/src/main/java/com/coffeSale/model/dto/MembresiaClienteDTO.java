@@ -55,5 +55,16 @@ public class MembresiaClienteDTO {
 				+ noCliente + ", fechaAlta=" + fechaAlta + "]";
 	}
 	
-	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof MembresiaClienteDTO){
+				MembresiaClienteDTO membresia = (MembresiaClienteDTO) obj; 
+				if(membresia.fechaAlta.equals(this.fechaAlta)
+					&& membresia.noCliente.equals(this.noCliente)
+					&& membresia.nombre.equals(this.nombre))
+					return true; 
+			}				
+		}
+		return false; 
+	}
 }

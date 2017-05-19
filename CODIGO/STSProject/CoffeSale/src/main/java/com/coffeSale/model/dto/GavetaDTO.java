@@ -42,4 +42,16 @@ public class GavetaDTO {
 		return "Gaveta [fondo=" + fondo + ", ultimaApertura=" + ultimaApertura
 				+ "]";
 	}
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof GavetaDTO){
+				GavetaDTO gaveta = (GavetaDTO) obj; 
+				if(gaveta.fondo == this.fondo
+					&& gaveta.ultimaApertura.equals(this.ultimaApertura))
+					return true; 
+			}
+		}
+		return false; 
+	}
 }

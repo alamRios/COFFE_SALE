@@ -64,4 +64,17 @@ public class ProductoDTO {
 				+ identificador + ", costo=" + costo + ", proveedor="
 				+ proveedor + "]";
 	} 
+	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof ProductoDTO){
+				ProductoDTO producto = (ProductoDTO)obj; 
+				if(producto.costo == this.costo
+					&& producto.identificador.equals(this.identificador)
+					&& producto.nombre.equals(this.nombre)
+					&& producto.proveedor.equals(this.proveedor))
+					return true; 
+			}
+		}return false; 
+	}
 }

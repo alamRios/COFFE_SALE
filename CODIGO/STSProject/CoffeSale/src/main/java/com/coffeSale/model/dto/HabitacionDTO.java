@@ -63,5 +63,17 @@ public class HabitacionDTO {
 				+ ", ancho=" + ancho + ", largo=" + largo + "}";
 	}
 	
-	
+	public boolean equals(Object obj){
+		if(obj != null){
+			if(obj instanceof HabitacionDTO){
+				HabitacionDTO habitacion = (HabitacionDTO)obj; 
+				if(habitacion.ancho == this.ancho
+					&& habitacion.largo == this.largo
+					&& habitacion.descripcion.equals(this.descripcion)
+					&& habitacion.uso.equals(this.uso))
+					return true; 
+			}
+		}
+		return false; 
+	}
 }
