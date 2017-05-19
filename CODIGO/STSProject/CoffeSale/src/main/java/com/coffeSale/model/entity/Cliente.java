@@ -3,16 +3,39 @@ package com.coffeSale.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity 
+@Table(name="CLIENTE")
 public class Cliente implements Serializable{
 	private static final long serialVersionUID = 3661590877343683715L;
 	
+	@Id
+	@Column(name="CLIENTE_ID")
 	private int id; 
+	
+	@Column(name="CLIENTE_NOMBRE")
 	private String nombre; 
+	
+	@Column(name="CLIENTE_APPAT")
 	private String appat; 
+	
+	@Column(name="CLIENTE_APMAT")
 	private String apmat; 
+	
+	@Column(name="CLIENTE_EMAIL")
 	private String email; 
+	
+	@Column(name="CLIENTE_CAFETERIA")
 	private int cafeteriaId; 
+	
+	@Column(name="CLIENTE_FECHA_ALTA")
 	private Date fechaAlata; 
+	
+	@Column(name="CLIENTE_ACTIVO")
 	private boolean activo; 
 	
 	public Cliente(){

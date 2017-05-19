@@ -8,24 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="GAVETA")
-public class Gaveta implements Serializable{
-	private static final long serialVersionUID = 8388174704300993987L;
+@Table(name="CAJA_FUERTE")
+public class CajaFuerte implements Serializable{
+	private static final long serialVersionUID = 3788025186393023336L;
 	
 	@Id
-	@Column(name="GAVETA_ID")
+	@Column(name="CAJA_FUERTE_ID")
 	private int id; 
 	
-	@Column(name="GAVETA_CAFETERIA")
-	private int cafeteriaId; 
+	@Column(name="CAJA_FUERTE_CAFETERIA")
+	private int cafeteriaId;
 	
-	@Column(name="GAVETA_FONDO")
-	private float fondo; 
+	@Column(name="CAJA_FUERTE_MONTO_TOTAL")
+	private float montoTotal; 
 	
-	@Column(name="GAVETA_CAPACIDAD")
+	@Column(name="CAJA_FUERTE_CAPACIDAD")
 	private float capacidad; 
 	
-	public Gaveta(){
+	public CajaFuerte(){
 	}
 
 	public int getId() {
@@ -44,12 +44,12 @@ public class Gaveta implements Serializable{
 		this.cafeteriaId = cafeteriaId;
 	}
 
-	public float getFondo() {
-		return fondo;
+	public float getMontoTotal() {
+		return montoTotal;
 	}
 
-	public void setFondo(float fondo) {
-		this.fondo = fondo;
+	public void setMontoTotal(float montoTotal) {
+		this.montoTotal = montoTotal;
 	}
 
 	public float getCapacidad() {
@@ -62,7 +62,8 @@ public class Gaveta implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Gaveta{id=" + id + ", cafeteriaId=" + cafeteriaId + ", fondo="
-				+ fondo + ", capacidad=" + capacidad + "}";
+		return "CajaFuerte{id=" + id + ", cafeteriaId=" + cafeteriaId
+				+ ", montoTotal=" + montoTotal + ", capacidad=" + capacidad
+				+ "}";
 	}
 }

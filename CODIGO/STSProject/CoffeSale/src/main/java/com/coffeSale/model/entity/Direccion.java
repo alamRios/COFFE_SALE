@@ -2,15 +2,36 @@ package com.coffeSale.model.entity;
 
 import java.io.Serializable; 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="DIRECCION")
 public class Direccion implements Serializable{
 	private static final long serialVersionUID = -361206277811930764L;
 	
+	@Id
+	@Column(name="DIRECCION_ID")
 	private int id; 
+	
+	@Column(name="DIRECCION_CALLE")
 	private String calle; 
+	
+	@Column(name="DIRECCION_NUMERO")
 	private String numero; 
+	
+	@Column(name="DIRECCION_COLONIA")
 	private String colonia; 
+	
+	@Column(name="DIRECCION_DELEGACION")
 	private String delegacion; 
+	
+	@Column(name="DIRECCION_CIUDAD")
 	private String ciudad; 
+	
+	@Column(name="DIRECCION_PAIS")
 	private String pais; 
 	
 	public Direccion(){

@@ -3,17 +3,42 @@ package com.coffeSale.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity 
+@Table(name="EMPLEADO")
 public class Empleado implements Serializable{
 	private static final long serialVersionUID = -2055483235949311482L;
 	
+	@Id
+	@Column(name="EMPLEADO_ID")
 	private int id; 
+	
+	@Column(name="EMPLEADO_PUESTO")
 	private int puestoId; 
+	
+	@Column(name="EMPLEADO_HORARIO")
 	private int horarioId; 
+	
+	@Column(name="EMPLEADO_CORREO")
 	private String correo; 
+	
+	@Column(name="EMPLEADO_NOMBRE")
 	private String nombre; 
+	
+	@Column(name="EMPLEADO_APPAT")
 	private String appat; 
+	
+	@Column(name="EMPLEADO_APMAT")
 	private String apmat; 
+	
+	@Column(name="EMPLEADO_CONTRATACION")
 	private Date contratacion;
+	
+	@Column(name="EMPLEADO_SALARIO")
 	private float salario; 
 	
 	public Empleado(){

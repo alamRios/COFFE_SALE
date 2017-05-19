@@ -3,13 +3,30 @@ package com.coffeSale.model.entity;
 import java.io.Serializable; 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="INVENTARIO")
 public class Inventario implements Serializable{
 	private static final long serialVersionUID = 2550256351903577355L;
 	
+	@Id
+	@Column(name="INVENTARIO_ID")
 	private int id; 
+	
+	@Column(name="INVENTARIO_CAFETERIA")
 	private int cafeteriaId; 
+	
+	@Column(name="INVENTARIO_PRODUCTO")
 	private int producto; 
+	
+	@Column(name="INVENTARIO_CANTIDAD")
 	private int cantidad; 
+	
+	@Column(name="INVENTARIO_ULTIMA_ACTUALIZACION")
 	private Date ultimaActualizacion; 
 	
 	public Inventario(){

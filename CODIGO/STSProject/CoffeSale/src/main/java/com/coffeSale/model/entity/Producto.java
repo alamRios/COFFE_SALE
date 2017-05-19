@@ -2,11 +2,24 @@ package com.coffeSale.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PRODUCTO")
 public class Producto implements Serializable{
 	private static final long serialVersionUID = -8738715846179084757L;
 	
+	@Id
+	@Column(name="PRODUCTO_ID")
 	private int id; 
+
+	@Column(name="PRODUCTO_NOMBRE")
 	private String nombre; 
+	
+	@Column(name="PRODUTO_COSTO")
 	private float costo; 
 	
 	public Producto(){

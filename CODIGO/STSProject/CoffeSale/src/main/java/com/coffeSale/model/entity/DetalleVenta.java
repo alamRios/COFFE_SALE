@@ -2,12 +2,27 @@ package com.coffeSale.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="DET_VENTA")
 public class DetalleVenta implements Serializable{
 	private static final long serialVersionUID = -838827074339573060L;
 	
+	@Id
+	@Column(name="DET_VENTA_ID")
 	private int id; 
+	
+	@Column(name="DET_VENTA_VENTA")
 	private int ventaId; 
+	
+	@Column(name="DET_VENTA_PRODUCTO")
 	private int productoId;
+	
+	@Column(name="DET_VENTA_PRECIO_UNITARIO")
 	private double precioUnitario; 
 	
 	public DetalleVenta(){

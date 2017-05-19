@@ -2,13 +2,30 @@ package com.coffeSale.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="TAREA")
 public class Tarea implements Serializable{
 	private static final long serialVersionUID = 291162223897654489L;
 	
+	@Id
+	@Column(name="TAREA_ID")
 	private int id; 
+	
+	@Column(name="TAREA_CAFETERIA")
 	private int cafeteriaId; 
+	
+	@Column(name="TAREA_EMPLEADO")
 	private int empleadoId; 
+	
+	@Column(name="TAREA_TITULO")
 	private String titulo; 
+	
+	@Column(name="TAREA_DESCRIPCION")
 	private String descripcion; 
 	
 	public Tarea(){

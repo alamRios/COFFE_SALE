@@ -3,15 +3,42 @@ package com.coffeSale.model.entity;
 import java.io.Serializable; 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PLAZA")
 public class Plaza implements Serializable{
 	private static final long serialVersionUID = 5974319249882759707L;
 	
+	@Id
+	@Column(name="PLAZA_ID")
 	private int id; 
+	
+	@Id
+	@Column(name="PLAZA_FOLIO")
 	private int folio; 
+	
+	@Id
+	@Column(name="PLAZA_EMPLEADO")
 	private int empleadoId; 
+	
+	@Id
+	@Column(name="PLAZA_FECHA_ALTA")
 	private Date fechaAlta; 
-	private Date fechaActualizacion; 
+	
+	@Id
+	@Column(name="PLAZA_ACTUALIZACION")
+	private Date fechaActualizacion;
+	
+	@Id
+	@Column(name="PLAZA_ACTIVA")
 	private boolean activa; 
+	
+	@Id
+	@Column(name="PLAZA_PLANTILLA")
 	private int plantillaId;
 	
 	public Plaza(){
