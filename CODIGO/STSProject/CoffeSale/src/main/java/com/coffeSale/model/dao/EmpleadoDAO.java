@@ -10,5 +10,4 @@ public interface EmpleadoDAO extends GenericDAO<Empleado>{
 	public EmpleadoDTO findById_DTO(int id) throws Exception;
 	public List<EmpleadoDTO> findByNombre_DTO(String nombre) throws Exception;
 	public List<EmpleadoDTO> findByCafeteria_DTO(int cafeteriaId);
-	public void save(Empleado empleado) throws Exception;
 }

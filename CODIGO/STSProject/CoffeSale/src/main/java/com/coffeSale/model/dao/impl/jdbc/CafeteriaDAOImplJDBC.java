@@ -1,6 +1,5 @@
 package com.coffeSale.model.dao.impl.jdbc;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transaction;
@@ -16,20 +15,15 @@ public class CafeteriaDAOImplJDBC implements CafeteriaDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void save(Cafeteria cafeteria) throws Exception {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = (Transaction) session.beginTransaction();
-		session.persist(cafeteria);
-		tx.commit();
-		session.close(); 
-	}
-	
-	@Override
 	public List<Cafeteria> findAll() throws Exception {
-		Session session = this.sessionFactory.openSession();
-		List<Cafeteria> cafeterias = session.createQuery("from CAFETERIA").list();
-		session.close();
-		return cafeterias;
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cafeteria> find(int idEntity) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -52,10 +46,14 @@ public class CafeteriaDAOImplJDBC implements CafeteriaDAO{
 
 	@Override
 	public List<CafeteriaDTO> findAll_DTO() throws Exception {
-		List<CafeteriaDTO> res = new ArrayList<CafeteriaDTO>();
-		
-				
-		return res;
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CafeteriaDTO> findByNombre_DTO(String nombre) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -63,7 +61,16 @@ public class CafeteriaDAOImplJDBC implements CafeteriaDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public void save(Cafeteria cafeteria) throws Exception {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = (Transaction) session.beginTransaction();
+		session.persist(cafeteria);
+		tx.commit();
+		session.close(); 
+	}
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
