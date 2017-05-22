@@ -28,7 +28,7 @@
 		</property>
 	</bean>
 	
-	<bean id="cafeteriaDAO" class="com.coffeSale.model.dao.impl.jdbc.CafeteriaDAOImplJDBC">
+	<bean id="cafeteriaDAO" class="com.coffeSale.model.dao.impl.hibernate.CafeteriaDAOImpl">
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 </beans>

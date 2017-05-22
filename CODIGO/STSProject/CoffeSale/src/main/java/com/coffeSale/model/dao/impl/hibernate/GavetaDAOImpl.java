@@ -1,4 +1,4 @@
-package com.coffeSale.model.dao.impl.jdbc;
+package com.coffeSale.model.dao.impl.hibernate;
 
 import java.util.List;
 
@@ -7,66 +7,68 @@ import javax.transaction.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
-import com.coffeSale.model.dao.CafeteriaDAO;
+import com.coffeSale.model.dao.GavetaDAO;
 import com.coffeSale.model.dto.CafeteriaDTO;
-import com.coffeSale.model.entity.Cafeteria;
+import com.coffeSale.model.dto.GavetaDTO;
+import com.coffeSale.model.entity.Gaveta;
 
-public class CafeteriaDAOImplJDBC implements CafeteriaDAO{
+public class GavetaDAOImpl implements GavetaDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Cafeteria> findAll() throws Exception {
+	public List<Gaveta> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Cafeteria> find(int idEntity) throws Exception {
+	public List<Gaveta> find(int idEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Cafeteria update(Cafeteria entity) throws Exception {
+	public Gaveta update(Gaveta entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Cafeteria create(Cafeteria entity) throws Exception {
+	public Gaveta create(Gaveta entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Cafeteria entity) throws Exception {
+	public void delete(Gaveta entity) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<CafeteriaDTO> findAll_DTO() throws Exception {
+	public List<GavetaDTO> findAll_DTO() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CafeteriaDTO> findByNombre_DTO(String nombre) throws Exception {
+	public GavetaDTO findById_DTO(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CafeteriaDTO findById_DTO(int id) throws Exception {
+	public List<GavetaDTO> findByCafeteria(CafeteriaDTO cafeteria)
+			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public void save(Cafeteria cafeteria) throws Exception {
+	public void save(Gaveta gaveta) throws Exception {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = (Transaction) session.beginTransaction();
-		session.persist(cafeteria);
+		session.persist(gaveta);
 		tx.commit();
 		session.close(); 
 	}
