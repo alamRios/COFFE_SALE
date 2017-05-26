@@ -20,12 +20,27 @@ import com.coffeSale.model.dto.VentaDTO;
 import com.coffeSale.model.dto.VentaEnTiendaDTO;
 
 @Controller
+@RequestMapping(value = "/rest/venta/")
 public class VentaController {
 	private static final Logger logger = LoggerFactory.getLogger(VentaController.class);
 	
 	Map<Integer,VentaDTO> ventaData = new HashMap<Integer, VentaDTO>();
 	
-	@RequestMapping(value = "/rest/ventas", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public @ResponseBody VentaDTO createVentaTienda(@RequestBody VentaEnTiendaDTO venta){
+		logger.info("Se inicia creacion de venta...");
+		venta.setMomentoVenta(new Date());
+		ventaData.put((int)venta.getMontoTotal(), venta);
+		return venta;
+	}
+	
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	public @ResponseBody VentaDTO getVenta(@PathVariable("id") int ventaId){
+		logger.info("Recuperando venta con id "+ventaId+"...");
+		return ventaData.get(ventaId);
+	}
+	
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public @ResponseBody List<VentaDTO> getAllVentas(){
 		logger.info("Se inicia recuperacion de todas las ventas...");
 		List<VentaDTO> ventas = new ArrayList<VentaDTO>();
@@ -34,19 +49,5 @@ public class VentaController {
 			ventas.add(ventaData.get(i));
 		}
 		return ventas; 
-	}
-	
-	@RequestMapping(value = "/rest/ventaTienda/create", method = RequestMethod.POST)
-	public @ResponseBody VentaDTO createVentaTienda(@RequestBody VentaEnTiendaDTO venta){
-		logger.info("Se inicia creacion de venta...");
-		venta.setMomentoVenta(new Date());
-		ventaData.put((int)venta.getMontoTotal(), venta);
-		return venta;
-	}
-	
-	@RequestMapping(value = "/rest/venta/{id}", method = RequestMethod.GET)
-	public @ResponseBody VentaDTO getVenta(@PathVariable("id") int ventaId){
-		logger.info("Recuperando venta con id "+ventaId+"...");
-		return ventaData.get(ventaId);
 	}
 }
