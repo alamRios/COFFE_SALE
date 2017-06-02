@@ -20,7 +20,7 @@ import com.coffeSale.model.dto.VentaDTO;
 import com.coffeSale.model.dto.VentaEnTiendaDTO;
 
 @Controller
-@RequestMapping(value = "/rest/venta/")
+@RequestMapping(value = "/rest/ventas/")
 public class VentaController {
 	private static final Logger logger = LoggerFactory.getLogger(VentaController.class);
 	
