@@ -8,68 +8,71 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.EmpleadoDAO;
-import com.coffeSale.model.dto.EmpleadoDTO;
-import com.coffeSale.model.entity.Empleado;
+import com.coffeSale.model.dto.Empleado;
+import com.coffeSale.model.entity.EmpleadoEntity;
 
 public class EmpleadoDAOImpl implements EmpleadoDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Empleado> findAll() throws Exception {
+	public List<EmpleadoEntity> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Empleado> find(int idEntity) throws Exception {
+	public List<EmpleadoEntity> find(int idEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Empleado update(Empleado entity) throws Exception {
+	public EmpleadoEntity update(EmpleadoEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Empleado create(Empleado entity) throws Exception {
+	public EmpleadoEntity create(EmpleadoEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Empleado entity) throws Exception {
+	public void delete(EmpleadoEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<EmpleadoDTO> findAll_DTO() throws Exception {
+	public List<Empleado> findAll_DTO() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public EmpleadoDTO findById_DTO(int id) throws Exception {
+	public Empleado findById_DTO(int id) throws Exception {
+		Session session = this.sessionFactory.openSession();
+		EmpleadoEntity empleadoEntity = (EmpleadoEntity)session.createQuery("from EmpleadoEntity where id = :idEmp")
+				.setParameter("idEmp",id)
+				.uniqueResult();
+		return empleadoEntity.getEmpleado();
+	}
+
+	@Override
+	public List<Empleado> findByNombre_DTO(String nombre) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<EmpleadoDTO> findByNombre_DTO(String nombre) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<EmpleadoDTO> findByCafeteria_DTO(int cafeteriaId) {
+	public List<Empleado> findByCafeteria_DTO(int cafeteriaId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public void save(Empleado empleado) throws Exception {
+	public void save(EmpleadoEntity empleado) throws Exception {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = (Transaction) session.beginTransaction();
 		session.persist(empleado);

@@ -3,11 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://db4free.net:3306/coffesaledb" />
-		<property name="username" value="coffesale" />
-		<property name="password" value="c0ff3S4l3@POO" />
+	<bean class="java.net.URI" id="dbUrl">
+	    <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+    	<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+    	<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
 	</bean>
 
 	<!-- Hibernate 3 Annotation SessionFactory Bean definition-->
@@ -16,7 +19,26 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.coffeSale.model.entity.Cafeteria</value>
+				<value>com.coffeSale.model.entity.CafeteriaEntity</value>
+				<value>com.coffeSale.model.entity.CajaFuerteEntity</value>
+				<value>com.coffeSale.model.entity.ClienteEntity</value>
+				<value>com.coffeSale.model.entity.DetalleVentaEntity</value>
+				<value>com.coffeSale.model.entity.DireccionEntity</value>
+				<value>com.coffeSale.model.entity.EmpleadoEntity</value>
+				<value>com.coffeSale.model.entity.GavetaEntity</value>
+				<value>com.coffeSale.model.entity.HabitacionEntity</value>
+				<value>com.coffeSale.model.entity.HorarioEntity</value>
+				<value>com.coffeSale.model.entity.InventarioEntity</value>
+				<value>com.coffeSale.model.entity.PermisoEntity</value>
+				<value>com.coffeSale.model.entity.PlantillaEntity</value>
+				<value>com.coffeSale.model.entity.PlazaEntity</value>
+				<value>com.coffeSale.model.entity.ProductoEntity</value>
+				<value>com.coffeSale.model.entity.PromocionEntity</value>
+				<value>com.coffeSale.model.entity.PuestoEntity</value>
+				<value>com.coffeSale.model.entity.ReporteFalloEntity</value>
+				<value>com.coffeSale.model.entity.TareaEntity</value>
+				<value>com.coffeSale.model.entity.VentaEntity</value>
+				<value>com.coffeSale.model.entity.MarcaEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -29,6 +51,39 @@
 	</bean>
 	
 	<bean id="cafeteriaDAO" class="com.coffeSale.model.dao.impl.hibernate.CafeteriaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="cajaFuerteDAO" class="com.coffeSale.model.dao.impl.hibernate.CajaFuerteDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="empleadoDAO" class="com.coffeSale.model.dao.impl.hibernate.EmpleadoDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="gavetaDAO" class="com.coffeSale.model.dao.impl.hibernate.GavetaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="habitacionDAO" class="com.coffeSale.model.dao.impl.hibernate.HabitacionDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="inventarioDAO" class="com.coffeSale.model.dao.impl.hibernate.InventarioDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="membresiaClienteDAO" class="com.coffeSale.model.dao.impl.hibernate.MembresiaClienteDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="plantillaDAO" class="com.coffeSale.model.dao.impl.hibernate.PlantillaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="plazaDAO" class="com.coffeSale.model.dao.impl.hibernate.PlazaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="productoDAO" class="com.coffeSale.model.dao.impl.hibernate.ProductoDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="ventaDAO" class="com.coffeSale.model.dao.impl.hibernate.VentaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="marcaDAO" class="com.coffeSale.model.dao.impl.hibernate.MarcaDAOImpl">
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 </beans>

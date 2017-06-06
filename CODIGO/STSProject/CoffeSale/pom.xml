@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.coffeSale</groupId>
-	<artifactId>spring</artifactId>
+	<artifactId>coffeSale</artifactId>
 	<name>CoffeSale</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
@@ -17,6 +17,13 @@
 		<hibernate.version>3.6.9.Final</hibernate.version>
 	</properties>
 	<dependencies>
+		<!-- PGSQL  -->	
+		<dependency>
+		  <groupId>org.postgresql</groupId>
+		  <artifactId>postgresql</artifactId>
+		  <version>9.4-1201-jdbc4</version>
+		</dependency>
+	
 		<!-- Jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -143,12 +150,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.9</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>

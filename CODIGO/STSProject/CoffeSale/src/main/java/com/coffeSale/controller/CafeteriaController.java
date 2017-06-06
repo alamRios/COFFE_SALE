@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.coffeSale.model.dto.CafeteriaDTO;
+import com.coffeSale.model.dto.Cafeteria;
 
 
 
@@ -18,7 +18,7 @@ public class CafeteriaController {
 	private static final Logger logger = LoggerFactory.getLogger(CafeteriaController.class);
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody CafeteriaDTO createCafeteria(@RequestBody CafeteriaDTO cafeteria){
+	public @ResponseBody Cafeteria createCafeteria(@RequestBody Cafeteria cafeteria){
 		logger.info("Se inicia creacion de cafeteria...");
 		return cafeteria;
 	}
