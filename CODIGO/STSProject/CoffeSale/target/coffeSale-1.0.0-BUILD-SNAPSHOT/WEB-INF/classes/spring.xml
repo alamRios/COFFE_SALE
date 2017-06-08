@@ -19,8 +19,8 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.coffeSale.model.entity.Cafeteria</value>
-				<value>com.coffeSale.model.entity.CajaFuerte</value>
+				<value>com.coffeSale.model.entity.CafeteriaEntity</value>
+				<value>com.coffeSale.model.entity.CajaFuerteEntity</value>
 				<value>com.coffeSale.model.entity.ClienteEntity</value>
 				<value>com.coffeSale.model.entity.DetalleVentaEntity</value>
 				<value>com.coffeSale.model.entity.DireccionEntity</value>
@@ -38,13 +38,16 @@
 				<value>com.coffeSale.model.entity.ReporteFalloEntity</value>
 				<value>com.coffeSale.model.entity.TareaEntity</value>
 				<value>com.coffeSale.model.entity.VentaEntity</value>
+				<value>com.coffeSale.model.entity.MarcaEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> -->
+				<prop key="connection.driver_class">org.postgresql.Driver</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.current_session_context_class">thread</prop>
-				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
 	</bean>
@@ -80,6 +83,9 @@
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 	<bean id="ventaDAO" class="com.coffeSale.model.dao.impl.hibernate.VentaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="marcaDAO" class="com.coffeSale.model.dao.impl.hibernate.MarcaDAOImpl">
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 </beans>

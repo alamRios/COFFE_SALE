@@ -1,8 +1,10 @@
 package com.coffeSale.model.dao.impl.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.MarcaDAO;
 import com.coffeSale.model.dto.Marca;
@@ -57,14 +59,33 @@ public class MarcaDAOImpl implements MarcaDAO{
 
 	@Override
 	public List<Marca> findAll_DTO() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.openSession();
+		List<MarcaEntity> marcas = session.createQuery("from MarcaEntity").list();
+		List<Marca> marcasDTO = new ArrayList<Marca>();
+		for(MarcaEntity marca : marcas){
+			marcasDTO.add(
+				marca.getMarca()
+			);
+		}
+		return marcasDTO;
 	}
 
 	@Override
 	public Marca findById_DTO(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void persist(Marca marca) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		MarcaEntity entity = new MarcaEntity();
+			entity.setNombre(marca.getNombre());
+			entity.setRfc(marca.getRfc());
+		session.persist(entity);
+		session.getTransaction().commit();
+		session.close();
 	}
 
 }

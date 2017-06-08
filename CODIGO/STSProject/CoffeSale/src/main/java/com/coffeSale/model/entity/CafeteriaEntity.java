@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +17,8 @@ public class CafeteriaEntity implements Serializable{
 	
 	@Id
 	@Column(name="CAFETERIA_ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(allocationSize=1, initialValue=1, sequenceName="cafeteria_cafeteria_id_seq", name="cafeteria_cafeteria_id_seq")
+	@GeneratedValue(generator="cafeteria_cafeteria_id_seq", strategy=GenerationType.SEQUENCE)
 	private int id; 
 	
 	@Column(name="CAFETERIA_NOMBRE")

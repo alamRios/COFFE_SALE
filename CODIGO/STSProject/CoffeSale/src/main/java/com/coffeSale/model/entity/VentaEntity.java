@@ -5,16 +5,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.coffeSale.model.dao.EmpleadoDAO;
-import com.coffeSale.model.dao.GavetaDAO;
 import com.coffeSale.model.dto.Venta;
-import com.coffeSale.model.dto.VentaEnTienda;
 
 @Entity 
 @Table(name="VENTA")
@@ -22,7 +20,9 @@ public class VentaEntity implements Serializable{
 	private static final long serialVersionUID = 7145142779203406704L;
 	
 	@Id
-	@Column(name="VENTA_ID")
+	@Column(name="VENTA_ID", columnDefinition = "serial")
+	@SequenceGenerator(allocationSize=1, initialValue=1, sequenceName="venta_venta_id_seq", name="venta_venta_id_seq")
+	@GeneratedValue(generator="venta_venta_id_seq", strategy=GenerationType.SEQUENCE)
 	private int id; 
 	
 	@Column(name="VENTA_PROMOCION")
@@ -48,16 +48,7 @@ public class VentaEntity implements Serializable{
 	
 	@Column(name="VENTA_GAVETA_ID")
 	private int gavetaId; 
-	
-	@Transient
-	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-	
-	@Transient
-	EmpleadoDAO empleadoDAO = context.getBean(EmpleadoDAO.class);
-	
-	@Transient
-	GavetaDAO gavetaDAO = context.getBean(GavetaDAO.class);
-	
+
 	public VentaEntity(){
 	}
 
@@ -138,18 +129,6 @@ public class VentaEntity implements Serializable{
 		return "VentaEntity{id=" + id + ", promocionId=" + promocionId
 				+ ", cafeteriaId=" + cafeteriaId + ", empleadoId=" + empleadoId
 				+ ", cliente=" + cliente + ", importe=" + importe + ", inicio="
-				+ inicio + ", fin=" + fin + ", gavetaId=" + gavetaId
-				+ ", context=" + context + ", empleadoDAO=" + empleadoDAO
-				+ ", gavetaDAO=" + gavetaDAO + "}";
-	}
-
-	@Transient
-	public Venta getVenta() throws Exception{
-		return new VentaEnTienda(
-					empleadoDAO.findById_DTO(this.empleadoId),
-					gavetaDAO.findById_DTO(this.gavetaId),
-					this.importe,
-					this.inicio
-				);
+				+ inicio + ", fin=" + fin + ", gavetaId=" + gavetaId +"}";
 	}
 }

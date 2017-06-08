@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,8 @@ public class ProductoEntity implements Serializable{
 	
 	@Id
 	@Column(name="PRODUCTO_ID")
+	@SequenceGenerator(allocationSize=1, initialValue=1, sequenceName="producto_producto_id_seq", name="producto_producto_id_seq")
+	@GeneratedValue(generator="producto_producto_id_seq", strategy=GenerationType.SEQUENCE)
 	private int id; 
 
 	@Column(name="PRODUCTO_NOMBRE")

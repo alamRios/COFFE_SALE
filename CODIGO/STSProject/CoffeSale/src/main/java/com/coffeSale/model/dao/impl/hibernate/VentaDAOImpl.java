@@ -10,8 +10,12 @@ import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.VentaDAO;
 import com.coffeSale.model.dto.Cafeteria;
+import com.coffeSale.model.dto.Empleado;
+import com.coffeSale.model.dto.Gaveta;
 import com.coffeSale.model.dto.Venta;
 import com.coffeSale.model.dto.VentaEnTienda;
+import com.coffeSale.model.entity.EmpleadoEntity;
+import com.coffeSale.model.entity.GavetaEntity;
 import com.coffeSale.model.entity.VentaEntity;
 
 public class VentaDAOImpl implements VentaDAO{
@@ -56,7 +60,12 @@ public class VentaDAOImpl implements VentaDAO{
 		List<Venta> ventasDTO = new ArrayList<Venta>();
 		for(VentaEntity venta : ventas){
 			ventasDTO.add(
-				venta.getVenta()
+				new VentaEnTienda(
+					((EmpleadoEntity)session.get(EmpleadoEntity.class, venta.getEmpleadoId())).getEmpleado(),
+					((GavetaEntity)session.get(GavetaEntity.class, venta.getGavetaId())).getGaveta(),
+					venta.getImporte(),
+					venta.getInicio()
+				)
 			);
 		}
 		return ventasDTO;

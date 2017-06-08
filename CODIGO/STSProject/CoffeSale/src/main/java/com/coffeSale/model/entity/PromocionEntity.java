@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,16 +16,18 @@ public class PromocionEntity implements Serializable{
 	private static final long serialVersionUID = -2182210060667261878L;
 	
 	@Id
-	@Column(name="PRODUCTO_ID")
+	@Column(name="PROMOCION_ID")
+	@SequenceGenerator(allocationSize=1, initialValue=1, sequenceName="promocion_promocion_id_seq", name="promocion_promocion_id_seq")
+	@GeneratedValue(generator="promocion_promocion_id_seq", strategy=GenerationType.SEQUENCE)
 	private int id; 
 	
-	@Column(name="PRODUCTO_DESCRIPCION")
+	@Column(name="PROMOCION_DESCRIPCION")
 	private String descripcion; 
 	
-	@Column(name="PRODUCTO_PORCENTAJE")
+	@Column(name="PROMOCION_PORCENTAJE")
 	private float procentaje; 
 	
-	@Column(name="PRODUCTO_CODIGO")
+	@Column(name="PROMOCION_CODIGO")
 	private String codigo; 
 	
 	public PromocionEntity(){

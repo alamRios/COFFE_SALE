@@ -5,7 +5,10 @@ import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,8 @@ public class HorarioEntity implements Serializable{
 	
 	@Id
 	@Column(name="HORARIO_ID")
+	@SequenceGenerator(allocationSize=1, initialValue=1, sequenceName="horario_horario_id_seq", name="horario_horario_id_seq")
+	@GeneratedValue(generator="horario_horario_id_seq", strategy=GenerationType.SEQUENCE)
 	private int id;
 	
 	@Column(name="HORARIO_DESCRIPCION")

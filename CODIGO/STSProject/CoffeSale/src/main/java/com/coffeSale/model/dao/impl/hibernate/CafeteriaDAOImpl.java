@@ -1,5 +1,6 @@
 package com.coffeSale.model.dao.impl.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transaction;
@@ -46,8 +47,16 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 
 	@Override
 	public List<Cafeteria> findAll_DTO() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.openSession();
+		List<CafeteriaEntity> cafeterias = session.createQuery("from CafeteriaEntity").list();
+		List<Cafeteria> cafeteriasDTO = new ArrayList<Cafeteria>();
+		for(CafeteriaEntity cafeteria : cafeterias){
+			cafeteriasDTO.add(
+				//TODO: Armar los que entran
+				new Cafeteria()
+			);
+		}
+		return cafeteriasDTO;
 	}
 
 	@Override
@@ -77,5 +86,21 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public void persist(Cafeteria cafeteria) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		CafeteriaEntity entity = new CafeteriaEntity(); 
+			entity.setAcepta_membresias(false);
+			entity.setNombre(cafeteria.getNombre());
+			entity.setEmail("");
+			entity.setDireccionId(1);
+			entity.setEstado("");
+			entity.setMarcaId(1);
+		session.persist(entity);
+		session.getTransaction().commit();
+		session.close();
 	}
 }

@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,8 @@ public class PlazaEntity implements Serializable{
 	
 	@Id
 	@Column(name="PLAZA_ID")
+	@SequenceGenerator(allocationSize=1, initialValue=1, sequenceName="plaza_plaza_id_seq", name="plaza_plaza_id_seq")
+	@GeneratedValue(generator="plaza_plaza_id_seq", strategy=GenerationType.SEQUENCE)
 	private int id; 
 	
 	@Id
