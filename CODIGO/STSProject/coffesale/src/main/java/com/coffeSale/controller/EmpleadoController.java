@@ -29,11 +29,11 @@ public class EmpleadoController {
 	
 	@RequestMapping(value="/{empleadoId}", method = RequestMethod.GET)
 	public @ResponseBody Empleado getById(@PathVariable String empleadoId){
-		return new Empleado("Alejandro","Maguey","Renteria",empleadoId);
+		return new Empleado("Alejandro","Maguey","Renteria",988);
 	}
 	
 	@RequestMapping(value="/{cafeteriaId}/{plantillaId}", method = RequestMethod.GET)
 	public @ResponseBody Empleado getByPlazaId(@PathVariable String cafeteriaId,@PathVariable String plantillaId){
-		return new Empleado("Alejandro","Maguey","Renteria",String.valueOf(plantillaId.hashCode())); 
+		return new Empleado("Alejandro","Maguey","Renteria",plantillaId.hashCode());
 	}
 }

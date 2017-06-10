@@ -32,11 +32,32 @@ public class MarcaDAOImpl implements MarcaDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public MarcaEntity find(String nombre) throws Exception{
+		Session session = sessionFactory.openSession();
+		MarcaEntity entity = new MarcaEntity(); 
+		entity = (MarcaEntity) session.createQuery("from MarcaEntity where nombre = :nombreDTO")
+				.setParameter("nombreDTO", nombre)
+				.uniqueResult();
+		return entity; 
+	}
 
 	@Override
 	public MarcaEntity update(MarcaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public void update(Marca marca) throws Exception{
+		Session session = sessionFactory.openSession();
+		session.createQuery(""
+				+ "UPDATE MarcaEntity "
+				+ "set nombre = :nombre "
+				+ "WHERE rfc = :rfc")
+				.setParameter("nombre", marca.getNombre())
+				.setParameter("rfc", marca.getRfc())
+				.executeUpdate();
 	}
 
 	@Override
@@ -60,7 +81,8 @@ public class MarcaDAOImpl implements MarcaDAO{
 	@Override
 	public List<Marca> findAll_DTO() throws Exception {
 		Session session = this.sessionFactory.openSession();
-		List<MarcaEntity> marcas = session.createQuery("from MarcaEntity").list();
+		@SuppressWarnings("unchecked")
+		List<MarcaEntity> marcas =  session.createQuery("from MarcaEntity").list();
 		List<Marca> marcasDTO = new ArrayList<Marca>();
 		for(MarcaEntity marca : marcas){
 			marcasDTO.add(
@@ -71,9 +93,9 @@ public class MarcaDAOImpl implements MarcaDAO{
 	}
 
 	@Override
-	public Marca findById_DTO(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Marca findByNombre_DTO(String nombre) throws Exception {
+		Marca marca = new Marca(); 
+		return marca;
 	}
 
 	@Override
@@ -86,6 +108,15 @@ public class MarcaDAOImpl implements MarcaDAO{
 		session.persist(entity);
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	@Override
+	public void delete(Marca marca) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.createQuery("DELETE FROM MarcaEntity "
+							+ "WHERE rfc = :rfc")
+				.setParameter("rfc", marca.getRfc())
+				.executeUpdate();
 	}
 
 }

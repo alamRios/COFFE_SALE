@@ -2,25 +2,32 @@ package com.coffeSale.model.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MembresiaCliente {
 	private String nombre;
 	private String noCliente;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fechaAlta; 
+	private String email;
 	
 	public MembresiaCliente(){
-		this("", "", new Date());
+		this("", "", new Date(),"");
 	}
-	public MembresiaCliente(String nombre, String noCliente, Date fechaAlta) {
+	public MembresiaCliente(String nombre, String noCliente, Date fechaAlta,
+		String email) {
 		super();
 		this.nombre = nombre;
 		this.noCliente = noCliente;
 		this.fechaAlta = fechaAlta;
+		this.email = email;
 	}
 	public MembresiaCliente(MembresiaCliente membresiaCliente){
 		this(
 			membresiaCliente.nombre, 
 			membresiaCliente.noCliente,
-			membresiaCliente.fechaAlta
+			membresiaCliente.fechaAlta,
+			membresiaCliente.email
 		);
 	}
 	

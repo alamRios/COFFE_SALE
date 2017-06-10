@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.coffeSale.model.dto.Habitacion;
+
 @Entity
 @Table(name="HABITACION")
 public class HabitacionEntity implements Serializable{
@@ -92,6 +94,15 @@ public class HabitacionEntity implements Serializable{
 		return "Habitacion{id=" + id + ", descripcion=" + descripcion
 				+ ", uso=" + uso + ", ancho=" + ancho + ", largo=" + largo
 				+ ", cafeteria=" + cafeteriaId + "}";
+	}
+
+	public Habitacion getHabitacion() {
+		return new Habitacion(
+			this.uso,
+			this.descripcion,
+			this.ancho,
+			this.largo
+		);
 	}
 
 	

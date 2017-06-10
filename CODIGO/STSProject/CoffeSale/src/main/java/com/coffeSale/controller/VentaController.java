@@ -40,9 +40,9 @@ public class VentaController {
 	public @ResponseBody List<Venta> getByCafeteria(@PathVariable String cafeteriaId){
 		logger.info("Recuperando ventas de cafeteria con id "+cafeteriaId+"...");
 		ArrayList<Venta> ventas = new ArrayList<Venta>();
-		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria","2016630"),
+		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria",2016630),
 				new Gaveta(500,8000.5),800,new Date()));
-		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria","2016630"),
+		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria",2016630),
 				new Gaveta(500,8000.5),500,new Date()));
 		return ventas; 
 	}
@@ -54,9 +54,9 @@ public class VentaController {
 		ArrayList<Venta> ventas = new ArrayList<Venta>();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		try{
-		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria","2016630"),
+		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria",2016630),
 				new Gaveta(500,8000.5),800,dateFormat.parse(fechaInicio)));
-		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria","2016630"),
+		ventas.add(new VentaEnTienda(new Empleado("Alejandro","Maguey","Renteria",2016630),
 				new Gaveta(500,8000.5),500,dateFormat.parse(fechaFin)));
 		}catch(Exception ex){
 			logger.warn(ex.getMessage());
@@ -71,13 +71,7 @@ public class VentaController {
 		try{
 			ventas = ventaDAO.findAll_DTO();
 		}catch(Exception ex){
-			logger.info(ex.getMessage());
-			ventas.add((Venta)new VentaEnTienda(
-					new Empleado("ERROR","ERROR","ERROR",ex.getMessage()),
-					new Gaveta(0,0),
-					0,
-					new Date()
-					));
+			logger.warn(ex.getMessage());
 		}
 		return ventas; 
 	}

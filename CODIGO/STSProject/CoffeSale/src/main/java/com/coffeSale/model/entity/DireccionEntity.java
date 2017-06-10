@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="DIRECCION")
@@ -103,5 +104,11 @@ public class DireccionEntity implements Serializable{
 		return "Direccion{id=" + id + ", calle=" + calle + ", numero=" + numero
 				+ ", colonia=" + colonia + ", delegacion=" + delegacion
 				+ ", ciudad=" + ciudad + ", pais=" + pais + "}";
+	}
+	
+	@Transient
+	public String getDireccion(){
+		return this.calle + " #"+this.numero+" Col. "+this.colonia+
+				" Del. "+this.delegacion+", "+this.ciudad+", "+this.pais;
 	}
 }

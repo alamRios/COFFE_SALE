@@ -6,19 +6,20 @@ public class ReporteDelSistema extends ReporteFallo {
 	public String pantallaDeError; // En donde fue el fallo
 	
 	public ReporteDelSistema() {
-		this(new Date(), "", "", "", "");
+		this(new Date(), "", 0, "", "", "");
 	}
-	public ReporteDelSistema(Date fechaCreacion, String folioReporte,
+	public ReporteDelSistema(Date fechaCreacion, String folioReporte, int idEmpleadoGenera,
 			String observaciones, String descripcionFallo, String pantallaDeError) {
-		super(fechaCreacion, folioReporte, observaciones, descripcionFallo);
+		super(fechaCreacion, folioReporte, observaciones, descripcionFallo, idEmpleadoGenera );
 		this.pantallaDeError = pantallaDeError; 
 	}
 
 	public ReporteDelSistema(ReporteDelSistema reporteSistema) {
 		this(
 			reporteSistema.fechaCreacion,
-			reporteSistema.folioReporte, 
-			reporteSistema.observaciones, 
+				reporteSistema.folioReporte,
+				reporteSistema.idEmpleadoGenera,
+				reporteSistema.observaciones,
 			reporteSistema.descripcionFallo,
 			reporteSistema.pantallaDeError
 		);

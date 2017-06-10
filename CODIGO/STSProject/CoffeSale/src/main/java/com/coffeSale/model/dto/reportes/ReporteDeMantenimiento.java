@@ -7,18 +7,18 @@ public class ReporteDeMantenimiento extends ReporteFallo {
 	private String especificacionTecnica;
 	
 	public ReporteDeMantenimiento(){
-		this(new Date(), "", "", "", "", "");
+		this(new Date(), "", "", "", 0, "", "");
 	}
 	public ReporteDeMantenimiento(Date fechaCreacion, String folioReporte, 
-			String observaciones, String descripcionFallo, 
+			String observaciones, String descripcionFallo, int idEmpleadoGenera,
 			String areaDeMantenimiento, String especificacionTecnica) {
-		super(fechaCreacion, folioReporte, observaciones, descripcionFallo);
+		super(fechaCreacion, folioReporte, observaciones, descripcionFallo, idEmpleadoGenera);
 		this.areaDeMantenimiento = areaDeMantenimiento;
 		this.especificacionTecnica = especificacionTecnica;
 	} 
 	public ReporteDeMantenimiento(ReporteDeMantenimiento rdm){
 		this(rdm.fechaCreacion, rdm.folioReporte,rdm.observaciones,
-				rdm.descripcionFallo, rdm.areaDeMantenimiento, 
+				rdm.descripcionFallo, rdm.idEmpleadoGenera, rdm.areaDeMantenimiento,
 				rdm.especificacionTecnica);
 	}
 	

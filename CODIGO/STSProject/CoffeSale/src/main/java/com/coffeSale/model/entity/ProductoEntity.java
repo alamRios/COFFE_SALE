@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.coffeSale.model.dto.Producto;
+
 @Entity
 @Table(name="PRODUCTO")
 public class ProductoEntity implements Serializable{
@@ -58,5 +60,9 @@ public class ProductoEntity implements Serializable{
 	public String toString() {
 		return "Producto{id=" + id + ", nombre=" + nombre + ", costo=" + costo
 				+ "}";
+	}
+
+	public Producto getProducto() {
+		return new Producto(this.nombre, String.valueOf(this.id), this.costo);
 	}
 }

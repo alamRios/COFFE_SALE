@@ -139,7 +139,7 @@ public class EmpleadoEntity implements Serializable{
 				this.nombre,
 				this.appat,
 				this.apmat,
-				String.valueOf(this.id)
+				this.id
 				);
 	}
 	

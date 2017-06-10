@@ -1,87 +1,98 @@
 package com.coffeSale.model.dto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cafeteria{	
-	private Plantilla plantilla; 
-	private ArrayList<Gaveta> gavetas; 
-	private ArrayList<Venta> ventas; 
-	private ArrayList<Habitacion> habitaciones; 
+	private List<Plantilla> plantillas;
+	private List<Gaveta> gavetas; 
+	private List<Venta> ventas; 
+	private List<Habitacion> habitaciones; 
 	private Inventario inventario; 
-	private CajaFuerte cajaFuerte; 
 	private String nombre; 
 	private String linea; 
 	private String identificador;
+	private boolean aceptaMembresias;
+	private String email; 
+	private String direccion;
 	
 	public Cafeteria(){
 		this(
-			new Plantilla(), 
+			new ArrayList<Plantilla>(),
 			new ArrayList<Gaveta>(),
 			new ArrayList<Venta>(),
 			new ArrayList<Habitacion>(),
 			new Inventario(), 
-			new CajaFuerte(),
-			"", "", ""
+			"", "", "",
+			true,
+			"",
+			""
 		);
 	}
-	public Cafeteria(Plantilla plantilla, ArrayList<Gaveta> gavetas,
-			ArrayList<Venta> ventas, ArrayList<Habitacion> habitaciones,
-			Inventario inventario, CajaFuerte cajaFuerte, String nombre,
-			String linea, String identificador) {
+	public Cafeteria(List<Plantilla> plantillas, List<Gaveta> gavetas,
+					 List<Venta> ventas, List<Habitacion> habitaciones,
+					 Inventario inventario, String nombre,
+					 String linea, String identificador, boolean aceptaMembresias,
+					 String email, String direccion) {
 		super();
-		this.plantilla = plantilla;
+		this.plantillas = plantillas;
 		this.gavetas = gavetas;
 		this.ventas = ventas;
 		this.habitaciones = habitaciones;
 		this.inventario = inventario;
-		this.cajaFuerte = cajaFuerte;
 		this.nombre = nombre;
 		this.linea = linea;
 		this.identificador = identificador;
+		this.aceptaMembresias = aceptaMembresias; 
+		this.email = email;
+		this.direccion = direccion;
 	}
 	public Cafeteria(Cafeteria cafeteria){
 		this(
-			cafeteria.plantilla, 
+			cafeteria.plantillas,
 			cafeteria.gavetas, 
 			cafeteria.ventas, 
 			cafeteria.habitaciones, 
 			cafeteria.inventario, 
-			cafeteria.cajaFuerte, 
-			cafeteria.nombre, 
+			cafeteria.nombre,
 			cafeteria.linea, 
-			cafeteria.identificador
+			cafeteria.identificador,
+			cafeteria.aceptaMembresias,
+			cafeteria.email,
+			cafeteria.direccion
 		);
 	}
 
-	public Plantilla getPlantilla() {
-		return plantilla;
+	public List<Plantilla> getPlantillas() {
+
+		return plantillas;
 	}
 
-	public void setPlantilla(Plantilla plantilla) {
-		this.plantilla = plantilla;
+	public void setPlantillas(List<Plantilla> plantillas) {
+		this.plantillas = plantillas;
 	}
 
-	public ArrayList<Gaveta> getGavetas() {
+	public List<Gaveta> getGavetas() {
 		return gavetas;
 	}
 
-	public void setGavetas(ArrayList<Gaveta> gavetas) {
+	public void setGavetas(List<Gaveta> gavetas) {
 		this.gavetas = gavetas;
 	}
 
-	public ArrayList<Venta> getVentas() {
+	public List<Venta> getVentas() {
 		return ventas;
 	}
 
-	public void setVentas(ArrayList<Venta> ventas) {
+	public void setVentas(List<Venta> ventas) {
 		this.ventas = ventas;
 	}
 
-	public ArrayList<Habitacion> getHabitaciones() {
+	public List<Habitacion> getHabitaciones() {
 		return habitaciones;
 	}
 
-	public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+	public void setHabitaciones(List<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
 
@@ -91,14 +102,6 @@ public class Cafeteria{
 
 	public void setInventario(Inventario inventario) {
 		this.inventario = inventario;
-	}
-
-	public CajaFuerte getCajaFuerte() {
-		return cajaFuerte;
-	}
-
-	public void setCajaFuerte(CajaFuerte cajaFuerte) {
-		this.cajaFuerte = cajaFuerte;
 	}
 
 	public String getNombre() {
@@ -125,40 +128,49 @@ public class Cafeteria{
 		this.identificador = identificador;
 	}
 
-	@Override
-	public String toString() {
-		return "Cafeteria [plantilla=" + plantilla + ", gavetas=" + gavetas
-				+ ", ventas=" + ventas + ", habitaciones=" + habitaciones
-				+ ", inventario=" + inventario + ", cajaFuerte=" + cajaFuerte
-				+ ", nombre=" + nombre + ", linea=" + linea
-				+ ", identificador=" + identificador + "]";
-	} 	
-	
-	public boolean equals(Object obj){
-		if(obj != null){
-			if(obj instanceof Cafeteria){
-				Cafeteria cafeteria = (Cafeteria) obj; 
-				if(cafeteria.cajaFuerte.equals(this.cajaFuerte)
-					&& cafeteria.identificador.equals(this.identificador)
-					&& cafeteria.inventario.equals(this.inventario)
-					&& cafeteria.linea.equals(this.linea)
-					&& cafeteria.nombre.equals(this.nombre)
-					&& cafeteria.plantilla.equals(this.plantilla)){
-					for(Gaveta gaveta : cafeteria.gavetas)
-						if(!this.gavetas.contains(gaveta))
-							return false;
-					for(Habitacion habitacion : cafeteria.habitaciones)
-						if(!this.habitaciones.contains(habitacion))
-							return false; 
-					for(Venta venta : cafeteria.ventas)
-						if(!this.ventas.contains(venta))
-							return false;					
-					return true;
-				}
-			}
-		}
-		return false; 
+	public boolean isAceptaMembresias() {
+		return aceptaMembresias;
 	}
-	
-	
+
+	public void setAceptaMembresias(boolean aceptaMembresias) {
+		this.aceptaMembresias = aceptaMembresias;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Cafeteria cafeteria = (Cafeteria) o;
+
+		if (aceptaMembresias != cafeteria.aceptaMembresias) return false;
+		if (plantillas != null ? !plantillas.equals(cafeteria.plantillas) : cafeteria.plantillas != null) return false;
+		if (gavetas != null ? !gavetas.equals(cafeteria.gavetas) : cafeteria.gavetas != null) return false;
+		if (ventas != null ? !ventas.equals(cafeteria.ventas) : cafeteria.ventas != null) return false;
+		if (habitaciones != null ? !habitaciones.equals(cafeteria.habitaciones) : cafeteria.habitaciones != null)
+			return false;
+		if (inventario != null ? !inventario.equals(cafeteria.inventario) : cafeteria.inventario != null) return false;
+		if (nombre != null ? !nombre.equals(cafeteria.nombre) : cafeteria.nombre != null) return false;
+		if (linea != null ? !linea.equals(cafeteria.linea) : cafeteria.linea != null) return false;
+		if (identificador != null ? !identificador.equals(cafeteria.identificador) : cafeteria.identificador != null)
+			return false;
+		if (email != null ? !email.equals(cafeteria.email) : cafeteria.email != null) return false;
+		return direccion != null ? direccion.equals(cafeteria.direccion) : cafeteria.direccion == null;
+	}
 }

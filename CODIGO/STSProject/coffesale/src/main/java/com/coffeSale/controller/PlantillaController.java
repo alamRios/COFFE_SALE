@@ -35,7 +35,7 @@ public class PlantillaController {
 	@RequestMapping(value="/{cafeteriaId}/{plantillaId}", method = RequestMethod.GET)
 	public @ResponseBody Plantilla getById(@PathVariable String cafeteriaId, @PathVariable String plantillaId){
 		ArrayList<Plaza> plazas = new ArrayList<Plaza>();
-		plazas.add(new Plaza(new Empleado("Alejandro","Maguey","Renteria","2016630"),"123",true));
+		plazas.add(new Plaza(new Empleado("Alejandro","Maguey","Renteria",2016630),"123",true));
 		return new Plantilla(plazas,plantillaId,1);
 	}
 	
@@ -44,7 +44,7 @@ public class PlantillaController {
 		List<Plantilla> plantillas = new ArrayList<Plantilla>();
 		
 		ArrayList<Plaza> plazas = new ArrayList<Plaza>();
-		plazas.add(new Plaza(new Empleado("Alejandro","Maguey","Renteria","2016630"),"123",true));  
+		plazas.add(new Plaza(new Empleado("Alejandro","Maguey","Renteria",2016630),"123",true));
 		
 		plantillas.add(new Plantilla(plazas,cafeteriaId+"-01",1));
 		plantillas.add(new Plantilla(plazas,cafeteriaId+"-02",1));

@@ -33,14 +33,14 @@ public class PlazaController {
 	
 	@RequestMapping(value="/{plantillaId}/{plazaId}", method = RequestMethod.GET)
 	public @ResponseBody Plaza getById(@PathVariable String plantillaId, @PathVariable String plazaId){
-		return new Plaza(new Empleado("Alejandro","Maguey","Renteria","2016630"),"123",true);
+		return new Plaza(new Empleado("Alejandro","Maguey","Renteria",2016630),"123",true);
 	}
 	
 	@RequestMapping(value="/{plantillaId}", method = RequestMethod.GET)
 	public @ResponseBody List<Plaza> getByPlantillaId(@PathVariable String plantillaId){
 		ArrayList<Plaza> plazas = new ArrayList<Plaza>();
-		plazas.add(new Plaza(new Empleado("Alejandro","Maguey","Renteria","2016630-01"),"123",true));
-		plazas.add(new Plaza(new Empleado("Alam Yael","Rios","Altamirano","2016630-02"),"321",true));  
+		plazas.add(new Plaza(new Empleado("Alejandro","Maguey","Renteria",2016630),"123",true));
+		plazas.add(new Plaza(new Empleado("Alam Yael","Rios","Altamirano",2016630),"321",true));
 		
 		return plazas; 
 	}

@@ -10,8 +10,6 @@ import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.VentaDAO;
 import com.coffeSale.model.dto.Cafeteria;
-import com.coffeSale.model.dto.Empleado;
-import com.coffeSale.model.dto.Gaveta;
 import com.coffeSale.model.dto.Venta;
 import com.coffeSale.model.dto.VentaEnTienda;
 import com.coffeSale.model.entity.EmpleadoEntity;
@@ -24,7 +22,8 @@ public class VentaDAOImpl implements VentaDAO{
 	@Override
 	public List<VentaEntity> findAll() throws Exception {
 		Session session = this.sessionFactory.openSession();
-		List<VentaEntity> ventas = session.createQuery("from Venta").list();
+		@SuppressWarnings("unchecked")
+		List<VentaEntity> ventas =  session.createQuery("from Venta").list();
 		session.close();
 		return ventas;
 	}
@@ -56,6 +55,7 @@ public class VentaDAOImpl implements VentaDAO{
 	@Override
 	public List<Venta> findAll_DTO() throws Exception {
 		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
 		List<VentaEntity> ventas = session.createQuery("from VentaEntity").list();
 		List<Venta> ventasDTO = new ArrayList<Venta>();
 		for(VentaEntity venta : ventas){

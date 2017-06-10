@@ -2,17 +2,21 @@ package com.coffeSale.model.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Inventario {
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fechaCreacion;
 	private String codigoInventario;
-	private ArrayList<Producto> productos;
+	private List<Producto> productos;
 	
 	public Inventario(){
 		this(new Date(), "", new ArrayList<Producto>());
 	}
 	public Inventario(Date fechaCreacion, String codigoInventario,
-			ArrayList<Producto> productos) {
+			List<Producto> productos) {
 		super();
 		this.fechaCreacion = fechaCreacion;
 		this.codigoInventario = codigoInventario;
@@ -42,11 +46,11 @@ public class Inventario {
 		this.codigoInventario = codigoInventario;
 	}
 
-	public ArrayList<Producto> getProductos() {
+	public List<Producto> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(ArrayList<Producto> productos) {
+	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
 

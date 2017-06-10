@@ -36,6 +36,16 @@ public class MarcaController {
 		}
 	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public @ResponseStatus(value = HttpStatus.OK) void update(@RequestBody Marca marca){
+		logger.info("Actualizando linea "+marca.getNombre()+"...");
+		try{
+			marcaDAO.update(marca);
+		}catch(Exception ex){
+			logger.warn(ex.getMessage());
+		}
+	}
+	
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public @ResponseBody List<Marca> getAll(){
 		logger.info("Se inicia recuperacion de todas las marcas...");
@@ -49,4 +59,13 @@ public class MarcaController {
 		return marcas; 
 	}
 	
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public void delete(@RequestBody Marca marca){
+		logger.info("Se inicia eliminacion de marca "+marca.getNombre()+"...");
+		try{
+			marcaDAO.delete(marca);
+		}catch(Exception ex){
+			logger.warn(ex.getMessage());
+		}
+	}
 }

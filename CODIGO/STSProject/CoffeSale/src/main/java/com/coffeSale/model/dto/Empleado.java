@@ -4,14 +4,14 @@ public class Empleado {
 	private String nombre; 
 	private String apPaterno; 
 	private String apMaterno; 
-	private String codigoEmpleado;
+	private int codigoEmpleado;
 	
 	public Empleado(){
-		this("","","","");
+		this("","","",0);
 	}
 	
 	public Empleado(String nombre, String apPaterno, String apMaterno,
-			String codigoEmpleado) {
+			int codigoEmpleado) {
 		super();
 		this.nombre = nombre;
 		this.apPaterno = apPaterno;
@@ -52,11 +52,11 @@ public class Empleado {
 		this.apMaterno = apMaterno;
 	}
 
-	public String getCodigoEmpleado() {
+	public int getCodigoEmpleado() {
 		return codigoEmpleado;
 	}
 
-	public void setCodigoEmpleado(String codigoEmpleado) {
+	public void setCodigoEmpleado(int codigoEmpleado) {
 		this.codigoEmpleado = codigoEmpleado;
 	}
 
@@ -71,7 +71,7 @@ public class Empleado {
 		if(obj != null){
 			if(obj instanceof Empleado){
 				Empleado empleado = (Empleado) obj; 
-				if(empleado.codigoEmpleado.equals(this.codigoEmpleado)
+				if(empleado.codigoEmpleado == this.codigoEmpleado
 					&& empleado.nombre.equals(this.nombre)
 					&& empleado.apMaterno.equals(this.apMaterno)
 					&& empleado.apPaterno.equals(this.apPaterno))
