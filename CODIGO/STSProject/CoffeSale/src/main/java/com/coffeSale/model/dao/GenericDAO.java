@@ -9,6 +9,5 @@ public interface GenericDAO <T extends Serializable> {
 	public T update(T entity) throws Exception; 
 	public T create(T entity) throws Exception;
 	public void delete(T entity) throws Exception; 
-	
 	public void save(T entity) throws Exception;
 }

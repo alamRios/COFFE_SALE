@@ -8,64 +8,64 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.CajaFuerteDAO;
-import com.coffeSale.model.dto.CafeteriaDTO;
-import com.coffeSale.model.dto.CajaFuerteDTO;
-import com.coffeSale.model.entity.CajaFuerte;
+import com.coffeSale.model.dto.Cafeteria;
+import com.coffeSale.model.dto.CajaFuerte;
+import com.coffeSale.model.entity.CajaFuerteEntity;
 
 public class CajaFuerteDAOImpl implements CajaFuerteDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<CajaFuerte> findAll() throws Exception {
+	public List<CajaFuerteEntity> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CajaFuerte> find(int idEntity) throws Exception {
+	public List<CajaFuerteEntity> find(int idEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CajaFuerte update(CajaFuerte entity) throws Exception {
+	public CajaFuerteEntity update(CajaFuerteEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CajaFuerte create(CajaFuerte entity) throws Exception {
+	public CajaFuerteEntity create(CajaFuerteEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(CajaFuerte entity) throws Exception {
+	public void delete(CajaFuerteEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<CajaFuerteDTO> findAll_DTO() throws Exception {
+	public List<CajaFuerte> findAll_DTO() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CajaFuerteDTO findById_DTO(int id) throws Exception {
+	public CajaFuerte findById_DTO(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CajaFuerteDTO findByCafeteria(CafeteriaDTO cafeteria)
+	public CajaFuerte findByCafeteria(Cafeteria cafeteria)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public void save(CajaFuerte cajaFuerte) throws Exception {
+	public void save(CajaFuerteEntity cajaFuerte) throws Exception {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = (Transaction) session.beginTransaction();
 		session.persist(cajaFuerte);

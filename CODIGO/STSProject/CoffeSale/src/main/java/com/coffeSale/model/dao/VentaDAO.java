@@ -2,12 +2,12 @@ package com.coffeSale.model.dao;
 
 import java.util.List;
 
-import com.coffeSale.model.entity.Venta;
-import com.coffeSale.model.dto.CafeteriaDTO;
-import com.coffeSale.model.dto.VentaDTO; 
+import com.coffeSale.model.entity.VentaEntity;
+import com.coffeSale.model.dto.Cafeteria;
+import com.coffeSale.model.dto.Venta; 
 
-public interface VentaDAO extends GenericDAO<Venta>{
-	public List<VentaDTO> findAll_DTO() throws Exception;
-	public VentaDTO findById_DTO(int id) throws Exception; 
-	public List<VentaDTO> findByCafeteria(CafeteriaDTO cafeteria) throws Exception;
+public interface VentaDAO extends GenericDAO<VentaEntity>{
+	public List<Venta> findAll_DTO() throws Exception;
+	public Venta findById_DTO(int id) throws Exception; 
+	public List<Venta> findByCafeteria(Cafeteria cafeteria) throws Exception;
 }

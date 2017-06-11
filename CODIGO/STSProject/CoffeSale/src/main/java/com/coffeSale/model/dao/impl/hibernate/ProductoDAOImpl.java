@@ -8,68 +8,68 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.ProductoDAO;
-import com.coffeSale.model.dto.ProductoDTO;
-import com.coffeSale.model.entity.Producto;
+import com.coffeSale.model.dto.Producto;
+import com.coffeSale.model.entity.ProductoEntity;
 
 public class ProductoDAOImpl implements ProductoDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Producto> findAll() throws Exception {
+	public List<ProductoEntity> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Producto> find(int idEntity) throws Exception {
+	public List<ProductoEntity> find(int idEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Producto update(Producto entity) throws Exception {
+	public ProductoEntity update(ProductoEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Producto create(Producto entity) throws Exception {
+	public ProductoEntity create(ProductoEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Producto entity) throws Exception {
+	public void delete(ProductoEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<ProductoDTO> findAll_DTO() throws Exception {
+	public List<Producto> findAll_DTO() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProductoDTO findById_DTO(int id) throws Exception {
+	public Producto findById_DTO(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ProductoDTO> findByNombre_DTO(String nombre) throws Exception {
+	public List<Producto> findByNombre_DTO(String nombre) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ProductoDTO> findByCosto_DTO(double costo) throws Exception {
+	public List<Producto> findByCosto_DTO(double costo) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public void save(Producto producto) throws Exception {
+	public void save(ProductoEntity producto) throws Exception {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = (Transaction) session.beginTransaction();
 		session.persist(producto);

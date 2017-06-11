@@ -8,64 +8,64 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.PlantillaDAO;
-import com.coffeSale.model.dto.CafeteriaDTO;
-import com.coffeSale.model.dto.PlantillaDTO;
-import com.coffeSale.model.entity.Plantilla;
+import com.coffeSale.model.dto.Cafeteria;
+import com.coffeSale.model.dto.Plantilla;
+import com.coffeSale.model.entity.PlantillaEntity;
 
 public class PlantillaDAOImpl implements PlantillaDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Plantilla> findAll() throws Exception {
+	public List<PlantillaEntity> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Plantilla> find(int idEntity) throws Exception {
+	public List<PlantillaEntity> find(int idEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Plantilla update(Plantilla entity) throws Exception {
+	public PlantillaEntity update(PlantillaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Plantilla create(Plantilla entity) throws Exception {
+	public PlantillaEntity create(PlantillaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Plantilla entity) throws Exception {
+	public void delete(PlantillaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<PlantillaDTO> findAll_DTO() throws Exception {
+	public List<Plantilla> findAll_DTO() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PlantillaDTO findById_DTO(int id) throws Exception {
+	public Plantilla findById_DTO(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PlantillaDTO findByCafeteria(CafeteriaDTO cafeteria)
+	public Plantilla findByCafeteria(Cafeteria cafeteria)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public void save(Plantilla plantilla) throws Exception {
+	public void save(PlantillaEntity plantilla) throws Exception {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = (Transaction) session.beginTransaction();
 		session.persist(plantilla);

@@ -8,69 +8,69 @@ import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.PlazaDAO;
-import com.coffeSale.model.dto.EmpleadoDTO;
-import com.coffeSale.model.dto.PlazaDTO;
-import com.coffeSale.model.entity.Plaza;
+import com.coffeSale.model.dto.Empleado;
+import com.coffeSale.model.dto.Plaza;
+import com.coffeSale.model.entity.PlazaEntity;
 
 public class PlazaDAOImpl implements PlazaDAO{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Plaza> findAll() throws Exception {
+	public List<PlazaEntity> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Plaza> find(int idEntity) throws Exception {
+	public List<PlazaEntity> find(int idEntity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Plaza update(Plaza entity) throws Exception {
+	public PlazaEntity update(PlazaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Plaza create(Plaza entity) throws Exception {
+	public PlazaEntity create(PlazaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Plaza entity) throws Exception {
+	public void delete(PlazaEntity entity) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<PlazaDTO> findAll_DTO() throws Exception {
+	public List<Plaza> findAll_DTO() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PlazaDTO findById_DTO(int id) throws Exception {
+	public Plaza findById_DTO(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PlazaDTO> findByPlantilla(PlazaDTO plaza) throws Exception {
+	public List<Plaza> findByPlantilla(Plaza plaza) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PlazaDTO> findByEmpleado(EmpleadoDTO empleado) throws Exception {
+	public List<Plaza> findByEmpleado(Empleado empleado) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public void save(Plaza plaza) throws Exception {
+	public void save(PlazaEntity plaza) throws Exception {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = (Transaction) session.beginTransaction();
 		session.persist(plaza);
