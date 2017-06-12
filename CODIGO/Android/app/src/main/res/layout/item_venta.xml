@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/venta_padding_top"
+      android:paddingLeft="@dimen/venta_padding_sides"
+      android:paddingRight="@dimen/venta_padding_sides">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          tools:text="Item 1, Item 2, Item 3, Item 5, Item 6, Item 7, Item 8"
+          android:textSize="16sp"
+          android:textStyle="bold"
+          android:maxEms="13"
+          android:layout_alignParentLeft="true"
+          android:ellipsize="end"
+          android:maxLines="1"
+          android:id="@+id/txt_productos"
+      />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          tools:text="$500.00"
+          android:textSize="16sp"
+          android:layout_alignParentRight="true"
+          android:id="@+id/txt_precio"
+      />
+  </RelativeLayout>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/venta_padding_top"
+      android:paddingLeft="@dimen/venta_padding_sides"
+      android:paddingRight="@dimen/venta_padding_sides">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Alejandro Maguey"
+        android:textSize="16sp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/txt_vendedor"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="11/junio/2017"
+        android:textSize="16sp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/txt_fecha"
+    />
+  </RelativeLayout>
+</LinearLayout>
