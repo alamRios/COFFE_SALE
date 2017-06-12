@@ -26,8 +26,9 @@ public class VentaDataRepositorio implements VentaRepositorio{
     this.ventaEntityDataMapper = ventaEntityDataMapper;
   }
 
-  @Override public Observable<List<Venta>> ventas() {
-    return null;
+  @Override public Observable<List<Venta>> ventas(String cafeteriaId) {
+    final VentaDataStore ventaDataStore = ventaDataStoreFactory.crearApiDataStore();
+    return ventaDataStore.listaVentaEntity(cafeteriaId).map(VentaEntityDataMapper::transformar);
   }
 
   @Override public Observable<Venta> venta() {
