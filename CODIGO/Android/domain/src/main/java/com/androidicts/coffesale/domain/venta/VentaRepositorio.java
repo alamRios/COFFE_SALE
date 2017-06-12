@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface VentaRepositorio {
 
-  Observable<List<Venta>> ventas();
+  Observable<List<Venta>> ventas(String cafeteriaId);
 
   Observable<Venta> venta();
 }

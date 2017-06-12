@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * Androidicts.com
  */
 
-public class ObtenerVentasCasoUso extends CasoUsoBase<List<Venta>, Void> {
+public class ObtenerVentasCasoUso extends CasoUsoBase<List<Venta>, String> {
 
   private final VentaRepositorio ventaRepositorio;
 
@@ -23,7 +23,7 @@ public class ObtenerVentasCasoUso extends CasoUsoBase<List<Venta>, Void> {
     this.ventaRepositorio = ventaRepositorio;
   }
 
-  @Override public Observable<List<Venta>> construirObservableCasoUso(Void sinUsar) {
-    return ventaRepositorio.ventas();
+  @Override public Observable<List<Venta>> construirObservableCasoUso(String cafeteriaId) {
+    return ventaRepositorio.ventas(cafeteriaId);
   }
 }
