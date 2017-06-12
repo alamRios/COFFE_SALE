@@ -1,6 +1,7 @@
 package com.androidicts.coffesale.di.componente;
 
 import android.content.Context;
+import com.androidicts.coffesale.BaseActivity;
 import com.androidicts.coffesale.di.modulo.AplicacionModulo;
 import com.androidicts.coffesale.domain.executor.PostExecutionThread;
 import com.androidicts.coffesale.domain.executor.ThreadExecutor;
@@ -17,7 +18,7 @@ import javax.inject.Singleton;
 @Component(modules = AplicacionModulo.class)
 public interface AplicacionComponente {
 
-
+  void inject(BaseActivity baseActivity);
 
   //Expuesto a los subgrafos
   Context context();

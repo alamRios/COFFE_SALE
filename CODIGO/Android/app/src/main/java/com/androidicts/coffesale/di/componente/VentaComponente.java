@@ -3,6 +3,7 @@ package com.androidicts.coffesale.di.componente;
 import com.androidicts.coffesale.di.PerActivity;
 import com.androidicts.coffesale.di.modulo.ActivityModulo;
 import com.androidicts.coffesale.di.modulo.VentaModulo;
+import com.androidicts.coffesale.venta.VentaListFragment;
 import dagger.Component;
 
 /**
@@ -15,4 +16,5 @@ import dagger.Component;
             modules = { ActivityModulo.class, VentaModulo.class})
 public interface VentaComponente extends ActivityComponente{
 
+  void inject(VentaListFragment ventaListFragment);
 }

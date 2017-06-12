@@ -4,6 +4,7 @@ import android.app.Application;
 import com.androidicts.coffesale.di.componente.AplicacionComponente;
 import com.androidicts.coffesale.di.componente.DaggerAplicacionComponente;
 import com.androidicts.coffesale.di.modulo.AplicacionModulo;
+import timber.log.Timber;
 
 /**
  * Created by alejandro on 11/06/17.
@@ -17,6 +18,7 @@ public class CoffeApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
     this.inicializarInyector();
+    Timber.plant(new Timber.DebugTree());
   }
 
   private void inicializarInyector() {
