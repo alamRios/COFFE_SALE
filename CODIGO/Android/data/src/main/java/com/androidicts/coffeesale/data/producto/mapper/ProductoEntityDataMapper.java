@@ -5,13 +5,19 @@ import com.androidicts.coffesale.domain.producto.Producto;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Created by alejandro on 11/06/17.
  * Androidicts.com
  */
 
+@Singleton
 public class ProductoEntityDataMapper {
+
+  @Inject
+  public ProductoEntityDataMapper() {}
 
   public static Producto transformar(ProductoEntity productoEntity) {
     Producto producto = null;
