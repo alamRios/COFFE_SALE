@@ -3,6 +3,7 @@ package com.androidicts.coffesale.venta;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import com.androidicts.coffesale.BaseActivity;
 import com.androidicts.coffesale.R;
 import com.androidicts.coffesale.di.HasComponent;
@@ -21,12 +22,23 @@ public class VentaListActivity extends BaseActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-
     inicializarInyector();
     if(savedInstanceState == null) {
       addFragment(R.id.activity_main, new VentaListFragment());
     }
+  }
+
+  @Override public int getContentViewId() {
+    return R.layout.activity_main;
+  }
+
+  @Override protected int getNavigationMenuItemId() {
+    return R.id.action_ventas;
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_venta_list, menu);
+    return super.onCreateOptionsMenu(menu);
   }
 
   private void inicializarInyector() {

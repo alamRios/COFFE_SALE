@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import com.androidicts.coffesale.BaseFragment;
 import com.androidicts.coffesale.R;
@@ -133,24 +134,27 @@ public class VentaListFragment extends BaseFragment implements VentaListView {
   }
 
   private void setRecyclerView() {
-    LinearLayoutManager layoutManager = new LinearLayoutManager(context());
-    DividerItemDecoration dividerItemDecoration =
-        new DividerItemDecoration(context(), layoutManager.getOrientation());
-
-
     ventasAdapter.setClickListener(clickListener);
-    rvVentas.addItemDecoration(dividerItemDecoration);
-    rvVentas.setLayoutManager(layoutManager);
+    rvVentas.setLayoutManager(new LinearLayoutManager(context()));
     rvVentas.setAdapter(ventasAdapter);
+    rvVentas.addItemDecoration(new DividerItemDecoration(context(), DividerItemDecoration.VERTICAL));
   }
 
-  public interface VentaListListener {
-    void onVentaClicked(final VentaModel ventaModel);
+  @OnClick(R.id.btn_retry) void onButtonRetryClick() {
+    cargarVentaList();
+  }
+
+  @OnClick(R.id.btn_add_venta) void onButtonAddClick() {
+    mostrarToast("Agregar Venta");
   }
 
   private VentasAdapter.OnItemClickListener clickListener = new VentasAdapter.OnItemClickListener() {
     @Override public void onVentaItemClicked(VentaModel ventaModel) {
-      mostrarToast("Holi");
+      mostrarToast(String.valueOf(ventaModel.getMontoTotal()));
     }
   };
+
+  interface VentaListListener {
+    void onVentaClicked(final VentaModel ventaModel);
+  }
 }

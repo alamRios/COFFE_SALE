@@ -40,24 +40,31 @@ public class VentasAdapter extends
   }
 
   @Override public void onBindViewHolder(VentasViewHolder holder, int position) {
-    VentaModel ventaModel = ventaModelList.get(position);
+    final VentaModel ventaModel = ventaModelList.get(position);
     VendedorModel vendedorModel = ventaModel.getVendedor();
     List<ProductoModel> productoModels = ventaModel.getProductos();
 
     String vendedor =  String.format(
-            "%s %s %s",
+            "%s %s",
             vendedorModel.getNombre(),
-            vendedorModel.getApellidoPaterno(),
-            vendedorModel.getApellidoMaterno()
+            vendedorModel.getApellidoPaterno()
     );
     String productos = "";
     for(ProductoModel productoModel: productoModels) {
       productos += " " + productoModel.getNombre() + ",";
     }
+    productos = productos.substring(0, productos.length() -1);
     holder.txtFecha.setText(ventaModel.getMomentoVenta());
     holder.txtPrecio.setText(String.valueOf(ventaModel.getMontoTotal()));
     holder.txtVendedor.setText(vendedor);
     holder.txtProductos.setText(productos);
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        if(clickListener != null) {
+          clickListener.onVentaItemClicked(ventaModel);
+        }
+      }
+    });
   }
 
   @Override public int getItemCount() {
