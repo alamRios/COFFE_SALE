@@ -3,6 +3,7 @@ package com.androidicts.coffeesale.data.venta;
 import android.content.Context;
 import com.androidicts.coffeesale.data.RestApi;
 import com.androidicts.coffeesale.data.RestApiImpl;
+import com.androidicts.coffeesale.data.producto.mapper.ProductoEntityJsonMapper;
 import com.androidicts.coffeesale.data.venta.mapper.VentaEntityJsonMapper;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -24,7 +25,9 @@ public class VentaDataStoreFactory {
 
   public VentaDataStore crearApiDataStore() {
     final VentaEntityJsonMapper ventaEntityJsonMapper = new VentaEntityJsonMapper();
-    final RestApi restApi = new RestApiImpl(context, ventaEntityJsonMapper);
+    final ProductoEntityJsonMapper productoEntityJsonMapper = new ProductoEntityJsonMapper();
+    final RestApi restApi = new RestApiImpl(context, ventaEntityJsonMapper,
+        productoEntityJsonMapper);
 
     return new ApiVentaDataStore(restApi);
   }

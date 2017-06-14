@@ -19,6 +19,8 @@ import javax.inject.Singleton;
 @Singleton
 public class VentaEntityDataMapper {
 
+  //TODO: Refactor to non-static methods
+
   @Inject
   public VentaEntityDataMapper() {}
 
