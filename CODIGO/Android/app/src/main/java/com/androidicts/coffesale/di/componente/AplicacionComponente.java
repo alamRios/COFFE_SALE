@@ -5,6 +5,7 @@ import com.androidicts.coffesale.BaseActivity;
 import com.androidicts.coffesale.di.modulo.AplicacionModulo;
 import com.androidicts.coffesale.domain.executor.PostExecutionThread;
 import com.androidicts.coffesale.domain.executor.ThreadExecutor;
+import com.androidicts.coffesale.domain.producto.ProductoRepositorio;
 import com.androidicts.coffesale.domain.venta.VentaRepositorio;
 import dagger.Component;
 import javax.inject.Singleton;
@@ -25,4 +26,5 @@ public interface AplicacionComponente {
   ThreadExecutor threadExecutor();
   PostExecutionThread postExecutionThread();
   VentaRepositorio ventaRepositorio();
+  ProductoRepositorio productoRepositorio();
 }

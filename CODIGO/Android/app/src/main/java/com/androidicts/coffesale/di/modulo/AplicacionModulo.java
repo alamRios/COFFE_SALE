@@ -2,11 +2,13 @@ package com.androidicts.coffesale.di.modulo;
 
 import android.content.Context;
 import com.androidicts.coffeesale.data.executor.JobExecutor;
+import com.androidicts.coffeesale.data.producto.ProductoDataRepositorio;
 import com.androidicts.coffeesale.data.venta.VentaDataRepositorio;
 import com.androidicts.coffesale.CoffeApplication;
 import com.androidicts.coffesale.UIThread;
 import com.androidicts.coffesale.domain.executor.PostExecutionThread;
 import com.androidicts.coffesale.domain.executor.ThreadExecutor;
+import com.androidicts.coffesale.domain.producto.ProductoRepositorio;
 import com.androidicts.coffesale.domain.venta.VentaRepositorio;
 import dagger.Module;
 import dagger.Provides;
@@ -40,5 +42,9 @@ public class AplicacionModulo {
 
   @Provides @Singleton VentaRepositorio provideVentaRepositorio(VentaDataRepositorio ventaDataRepositorio) {
     return ventaDataRepositorio;
+  }
+
+  @Provides @Singleton ProductoRepositorio provideProductoRepositorio(ProductoDataRepositorio productoDataRepositorio) {
+    return productoDataRepositorio;
   }
 }
