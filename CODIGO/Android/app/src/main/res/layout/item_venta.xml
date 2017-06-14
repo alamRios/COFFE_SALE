@@ -11,6 +11,15 @@
       android:paddingTop="@dimen/venta_padding_top"
       android:paddingLeft="@dimen/venta_padding_sides"
       android:paddingRight="@dimen/venta_padding_sides">
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_shopping_basket_grey_700_18dp"
+          android:layout_alignParentStart="true"
+          android:id="@+id/ic_shopping"
+          android:paddingEnd="2dp"
+          android:paddingStart="2dp"
+      />
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -18,17 +27,22 @@
           android:textSize="16sp"
           android:textStyle="bold"
           android:maxEms="13"
-          android:layout_alignParentLeft="true"
           android:ellipsize="end"
           android:maxLines="1"
           android:id="@+id/txt_productos"
+          android:layout_toEndOf="@+id/ic_shopping"
       />
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_attach_money_grey_700_18dp"
+          android:layout_toStartOf="@+id/txt_precio"/>
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          tools:text="$500.00"
+          tools:text="500.00"
           android:textSize="16sp"
-          android:layout_alignParentRight="true"
+          android:layout_alignParentEnd="true"
           android:id="@+id/txt_precio"
       />
   </RelativeLayout>
@@ -38,20 +52,34 @@
       android:paddingTop="@dimen/venta_padding_top"
       android:paddingLeft="@dimen/venta_padding_sides"
       android:paddingRight="@dimen/venta_padding_sides">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_person_grey_700_18dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/ic_person"
+        android:paddingEnd="2dp"
+        android:paddingStart="2dp"
+    />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Alejandro Maguey"
         android:textSize="16sp"
-        android:layout_alignParentLeft="true"
+        android:layout_toEndOf="@+id/ic_person"
         android:id="@+id/txt_vendedor"
     />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_date_range_grey_700_18dp"
+        android:layout_toStartOf="@+id/txt_fecha"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="11/junio/2017"
         android:textSize="16sp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:id="@+id/txt_fecha"
     />
   </RelativeLayout>

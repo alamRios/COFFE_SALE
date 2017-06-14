@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.androidicts.coffesale.venta.VentaListFragment">
+    tools:context="com.androidicts.coffesale.producto.ProductoListFragment">
 
   <android.support.v7.widget.RecyclerView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:id="@+id/rv_ventas"
+      android:id="@+id/rv_productos"
   />
 
   <include
@@ -19,7 +19,7 @@
   <android.support.design.widget.FloatingActionButton
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:id="@+id/btn_add_venta"
+      android:id="@+id/btn_add_producto"
       android:layout_gravity="bottom|end"
       android:src="@drawable/ic_add_green_24dp"
       android:layout_marginBottom="72dp"
