@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import com.androidicts.coffeesale.data.exception.ConexionRedException;
+import com.androidicts.coffeesale.data.producto.ProductoEntity;
+import com.androidicts.coffeesale.data.producto.mapper.ProductoEntityJsonMapper;
 import com.androidicts.coffeesale.data.venta.VentaEntity;
 import com.androidicts.coffeesale.data.venta.mapper.VentaEntityJsonMapper;
 import io.reactivex.Observable;
@@ -19,13 +21,16 @@ public class RestApiImpl implements RestApi {
 
   private final Context context;
   private final VentaEntityJsonMapper ventaEntityJsonMapper;
+  private final ProductoEntityJsonMapper productoEntityJsonMapper;
 
-  public RestApiImpl(Context context, VentaEntityJsonMapper ventaEntityJsonMapper) {
-    if(context == null || ventaEntityJsonMapper == null) {
+  public RestApiImpl(Context context, VentaEntityJsonMapper ventaEntityJsonMapper,
+      ProductoEntityJsonMapper productoEntityJsonMapper) {
+    if(context == null || ventaEntityJsonMapper == null || productoEntityJsonMapper == null) {
       throw new IllegalArgumentException("Los argumentos no pueden ser nulos");
     }
     this.context = context.getApplicationContext();
     this.ventaEntityJsonMapper = ventaEntityJsonMapper;
+    this.productoEntityJsonMapper = productoEntityJsonMapper;
   }
 
   @Override public Observable<List<VentaEntity>> ventaEntityList(String cafeteriaId) {
@@ -46,6 +51,30 @@ public class RestApiImpl implements RestApi {
         e.onError(new ConexionRedException());
       }
     });
+  }
+
+  @Override public Observable<List<ProductoEntity>> productoEntityList() {
+    return Observable.create(e -> {
+      if(hayInternet()) {
+        try {
+          String respuestaProductoEntities = getProductoEntitiesDeApi();
+          if(respuestaProductoEntities != null) {
+            e.onNext(productoEntityJsonMapper.transformarProductoEntityList(respuestaProductoEntities));
+            e.onComplete();
+          } else {
+            e.onError(new ConexionRedException());
+          }
+        } catch(Exception ex) {
+          e.onError(new ConexionRedException(ex.getCause()));
+        }
+      } else {
+        e.onError(new ConexionRedException());
+      }
+    });
+  }
+
+  private String getProductoEntitiesDeApi() throws MalformedURLException{
+    return ApiConnection.createGET(API_URL_GET_PRODUCTO_LIST).requestSyncCall();
   }
 
   private String getVentaEntitiesDeApi(String cafeteriaId) throws MalformedURLException {
