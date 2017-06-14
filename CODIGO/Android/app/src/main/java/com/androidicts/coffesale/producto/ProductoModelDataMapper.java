@@ -1,16 +1,21 @@
 package com.androidicts.coffesale.producto;
 
+import com.androidicts.coffesale.di.PerActivity;
 import com.androidicts.coffesale.domain.producto.Producto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Created by alejandro on 11/06/17.
  * Androidicts.com
  */
-
+@PerActivity
 public class ProductoModelDataMapper {
+
+  @Inject
+  public ProductoModelDataMapper() { }
 
   public static ProductoModel transformar(Producto producto) {
     if(producto == null) {
