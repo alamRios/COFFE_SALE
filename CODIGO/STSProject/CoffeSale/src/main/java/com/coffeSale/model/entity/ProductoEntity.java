@@ -26,9 +26,13 @@ public class ProductoEntity implements Serializable{
 	@Column(name="PRODUCTO_NOMBRE")
 	private String nombre; 
 	
-	@Column(name="PRODUTO_COSTO")
+	@Column(name="PRODUCTO_COSTO")
 	private float costo; 
 	
+	@Column(name="PRODUCTO_LINEA_ID")
+	private int marca; 
+	
+
 	public ProductoEntity(){
 	}
 
@@ -55,6 +59,14 @@ public class ProductoEntity implements Serializable{
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
+	
+	public int getMarca() {
+		return marca;
+	}
+
+	public void setMarca(int marca) {
+		this.marca = marca;
+	}
 
 	@Override
 	public String toString() {
@@ -63,6 +75,7 @@ public class ProductoEntity implements Serializable{
 	}
 
 	public Producto getProducto() {
-		return new Producto(this.nombre, String.valueOf(this.id), this.costo);
+		return new Producto(this.nombre, String.valueOf(this.id),
+				this.costo, this.marca);
 	}
 }

@@ -10,7 +10,9 @@ import org.hibernate.classic.Session;
 import com.coffeSale.model.dao.PlazaDAO;
 import com.coffeSale.model.dto.Empleado;
 import com.coffeSale.model.dto.Plaza;
+import com.coffeSale.model.entity.EmpleadoEntity;
 import com.coffeSale.model.entity.PlazaEntity;
+import com.coffeSale.model.entity.PuestoEntity;
 
 public class PlazaDAOImpl implements PlazaDAO{
 	private SessionFactory sessionFactory;
@@ -84,5 +86,38 @@ public class PlazaDAOImpl implements PlazaDAO{
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public void persist(Plaza plaza) throws Exception {
+		//TODO: Definir forma de crear una plaza
+	}
+
+	@Override
+	public Plaza findByFolio(String plazaId) throws Exception {
+		Plaza plazaDTO = new Plaza();
+		
+		
+		
+		Session session = sessionFactory.openSession();
+		PlazaEntity plazaEntity = (PlazaEntity)session.createQuery("from PlazaEntity "
+				+ "where folio = :folioPlaza order by id desc")
+				.setParameter("folioPlaza", plazaId)
+				.setMaxResults(1)
+				.uniqueResult();
+
+		EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+				session.get(EmpleadoEntity.class, plazaEntity.getEmpleadoId());
+		PuestoEntity puestoEntity = (PuestoEntity)
+				session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+		Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+				empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+				empleadoEntity.getId(),puestoEntity.getNombre(),
+				empleadoEntity.getCorreo());
+		
+		plazaDTO.setIdentificador(String.valueOf(plazaEntity.getId()));
+		plazaDTO.setActiva(plazaEntity.isActiva());
+		plazaDTO.setEmpleado(empleadoDTO);
+		return plazaDTO; 
 	}
 }

@@ -35,7 +35,7 @@ public class PlazaEntity implements Serializable{
 	private Date fechaAlta; 
 	
 	@Id
-	@Column(name="PLAZA_ACTUALIZACION")
+	@Column(name="PLAZA_FECHA_ACTUALIZACION")
 	private Date fechaActualizacion;
 	
 	@Id

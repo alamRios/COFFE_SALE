@@ -1,5 +1,6 @@
 package com.coffeSale.model.dao.impl.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transaction;
@@ -45,10 +46,16 @@ public class GavetaDAOImpl implements GavetaDAO{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Gaveta> findAll_DTO() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.openSession();
+		List<Gaveta> gavetas = new ArrayList<Gaveta>();
+		List<GavetaEntity> gavetasE = session.createQuery("from GavetaEntity").list();
+		for(GavetaEntity gavetaE : gavetasE){
+			gavetas.add(gavetaE.getGaveta());
+		}
+		return gavetas; 
 	}
 
 	@Override

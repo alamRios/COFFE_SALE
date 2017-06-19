@@ -25,7 +25,7 @@ public class CafeteriaController {
 	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CafeteriaDAO cafeteriaDAO = context.getBean(CafeteriaDAO.class);
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes="application/json")
 	public @ResponseStatus(value = HttpStatus.OK) void create(@RequestBody Cafeteria cafeteria){
 		logger.info("Se inicia creacion de cafeteria...");
 		try{
@@ -58,4 +58,15 @@ public class CafeteriaController {
 		return cafeterias; 
 	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes="application/json")
+	@ResponseBody
+	public @ResponseStatus(value = HttpStatus.OK) Cafeteria update(@RequestBody Cafeteria cafeteria){
+		logger.info("Actualizando cafeteria "+cafeteria.getNombre()+"...");
+		try{
+			return cafeteriaDAO.update(cafeteria);
+		}catch(Exception ex){
+			logger.warn(ex.getMessage());
+			return new Cafeteria(); 
+		}
+	}
 }

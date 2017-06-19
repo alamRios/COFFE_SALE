@@ -1,5 +1,6 @@
 package com.coffeSale.model.dao.impl.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transaction;
@@ -44,10 +45,17 @@ public class ProductoDAOImpl implements ProductoDAO{
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Producto> findAll_DTO() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.openSession();
+		List<ProductoEntity> productosE = 
+				session.createQuery("from ProductoEntity").list();
+		List<Producto> productos = new ArrayList<Producto>();
+		for(ProductoEntity productoE : productosE){
+			productos.add(productoE.getProducto());
+		}
+		return productos; 
 	}
 
 	@Override
@@ -83,5 +91,58 @@ public class ProductoDAOImpl implements ProductoDAO{
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Producto> findByLinea(int lineaId) throws Exception {
+		Session session = sessionFactory.openSession();
+		List<Producto> productos = new ArrayList<Producto>();
+		List<ProductoEntity> productosE = session.createQuery("from ProductoEntity"
+				+ " where marca = :lineaId")
+				.setParameter("lineaId", lineaId)
+				.list();
+		for(ProductoEntity productoE : productosE){
+			productos.add(productoE.getProducto());
+		}
+		return productos;
+	}
+
+	@Override
+	public Producto persist(Producto producto) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		ProductoEntity productoE = new ProductoEntity(); 
+			productoE.setCosto((float)producto.getCosto());
+			productoE.setNombre(producto.getNombre());
+			productoE.setMarca(producto.getCodigoLinea());
+		session.persist(productoE);
+		session.getTransaction().commit();
+		session.close();
+		return productoE.getProducto(); 
+	}
+
+	@Override
+	public void delete(Producto producto) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.createQuery("DELETE FROM ProductoEntity "
+							+ "WHERE id = :productoId")
+				.setParameter("productoId", Integer.parseInt(producto.getIdentificador()))
+				.executeUpdate();
+	}
+
+	@Override
+	public Producto update(Producto producto) throws Exception {
+		Session session = sessionFactory.openSession();
+		session.createQuery(""
+				+ "UPDATE ProductoEntity "
+				+ "set costo = :ncosto, "
+					+ "nombre = :nnombre "
+				+ "WHERE id = :productoId")
+				.setParameter("ncosto", (float)producto.getCosto())
+				.setParameter("nnombre", producto.getNombre())
+				.setParameter("productoId", Integer.valueOf(producto.getIdentificador()))
+				.executeUpdate();
+		return producto; 
 	}
 }

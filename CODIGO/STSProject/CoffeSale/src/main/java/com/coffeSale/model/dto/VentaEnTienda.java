@@ -1,5 +1,6 @@
 package com.coffeSale.model.dto;
 
+import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,27 +16,45 @@ public class VentaEnTienda implements Venta{
 	private Empleado vendedor; 
 	private Gaveta gaveta;
 	private double montoTotal;
-	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date momentoVenta;
+	private List<Producto> productos; 
+	private MembresiaCliente comprador; 
 	
+	public MembresiaCliente getComprador() {
+		return comprador;
+	}
+	public void setComprador(MembresiaCliente comprador) {
+		this.comprador = comprador;
+	}
+	public List<Producto> getProductos() {
+		return productos;
+	}
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
 	public VentaEnTienda(){
-		this(new Empleado(), new Gaveta(), 0.0, new Date());
+		this(new Empleado(), new Gaveta(), 0.0, new Date(),
+				new ArrayList<Producto>(), new MembresiaCliente());
 	}
 	public VentaEnTienda(Empleado vendedor, Gaveta gaveta, double montoTotal,
-			Date momentoVenta) {
+			Date momentoVenta, List<Producto> productos, MembresiaCliente comprador) {
 		super();
 		this.vendedor = vendedor;
 		this.gaveta = gaveta;
 		this.montoTotal = montoTotal;
 		this.momentoVenta = momentoVenta;
+		this.productos = productos; 
+		this.comprador = comprador; 
 	}
 	public VentaEnTienda(VentaEnTienda ventaEnTienda){
 		this(
 			ventaEnTienda.vendedor, 
 			ventaEnTienda.gaveta,
 			ventaEnTienda.montoTotal, 
-			ventaEnTienda.momentoVenta
+			ventaEnTienda.momentoVenta,
+			ventaEnTienda.productos,
+			ventaEnTienda.comprador
 		);
 	}
 	

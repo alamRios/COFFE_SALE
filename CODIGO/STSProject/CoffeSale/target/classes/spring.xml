@@ -39,6 +39,7 @@
 				<value>com.coffeSale.model.entity.TareaEntity</value>
 				<value>com.coffeSale.model.entity.VentaEntity</value>
 				<value>com.coffeSale.model.entity.MarcaEntity</value>
+				<value>com.coffeSale.model.entity.UsuarioEntity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -86,6 +87,12 @@
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 	<bean id="marcaDAO" class="com.coffeSale.model.dao.impl.hibernate.MarcaDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="usuarioDAO" class="com.coffeSale.model.dao.impl.hibernate.UsuarioDAOImpl">
+		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+	</bean>
+	<bean id="utileriaDAO" class="com.coffeSale.model.dao.impl.hibernate.UtileriaDAOImpl">
 		<property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
 	</bean>
 </beans>

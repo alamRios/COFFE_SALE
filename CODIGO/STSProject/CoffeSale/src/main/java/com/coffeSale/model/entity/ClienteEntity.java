@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.coffeSale.model.dto.MembresiaCliente;
+
 @Entity 
 @Table(name="CLIENTE")
 public class ClienteEntity implements Serializable{
@@ -116,5 +118,14 @@ public class ClienteEntity implements Serializable{
 				+ ", apmat=" + apmat + ", email=" + email + ", cafeteriaId="
 				+ cafeteriaId + ", fechaAlata=" + fechaAlata + ", activo="
 				+ activo + "}";
+	}
+
+	public MembresiaCliente getCliente() {
+		return new MembresiaCliente(
+				this.nombre +" "+ this.appat +" "+ this.apmat,
+				this.id,
+				this.fechaAlata,
+				this.email
+		);
 	}
 }

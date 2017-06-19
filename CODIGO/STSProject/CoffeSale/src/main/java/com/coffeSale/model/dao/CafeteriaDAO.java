@@ -10,5 +10,6 @@ public interface CafeteriaDAO extends GenericDAO<CafeteriaEntity>{
 	public List<Cafeteria> findByNombre_DTO(String nombre) throws Exception;
 	public List<Cafeteria> findByLinea_DTO(int lineaId) throws Exception;
 	public Cafeteria findByLineaYNombre_DTO(int lineaId, String nombre) throws Exception;
-	public void persist(Cafeteria cafeteria) throws Exception;
+	public Cafeteria persist(Cafeteria cafeteria) throws Exception;
+	public Cafeteria update(Cafeteria cafeteria) throws Exception;
 }

@@ -26,7 +26,7 @@ public class MarcaController {
 	
 	MarcaDAO marcaDAO = context.getBean(MarcaDAO.class);
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes="application/json")
 	public @ResponseStatus(value = HttpStatus.OK) void create(@RequestBody Marca marca){
 		logger.info("Se inicia creacion de marca...");
 		try{
@@ -36,7 +36,7 @@ public class MarcaController {
 		}
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	@RequestMapping(value = "/update", method = RequestMethod.PUT, consumes="application/json")
 	public @ResponseStatus(value = HttpStatus.OK) void update(@RequestBody Marca marca){
 		logger.info("Actualizando linea "+marca.getNombre()+"...");
 		try{
@@ -59,7 +59,7 @@ public class MarcaController {
 		return marcas; 
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE, consumes="application/json")
 	public void delete(@RequestBody Marca marca){
 		logger.info("Se inicia eliminacion de marca "+marca.getNombre()+"...");
 		try{

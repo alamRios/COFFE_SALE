@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class MembresiaCliente {
 	private String nombre;
-	private String noCliente;
+	private int noCliente;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fechaAlta; 
 	private String email;
 	
 	public MembresiaCliente(){
-		this("", "", new Date(),"");
+		this("", 0, new Date(),"");
 	}
-	public MembresiaCliente(String nombre, String noCliente, Date fechaAlta,
+	public MembresiaCliente(String nombre, int noCliente, Date fechaAlta,
 		String email) {
 		super();
 		this.nombre = nombre;
@@ -39,11 +39,11 @@ public class MembresiaCliente {
 		this.nombre = nombre;
 	}
 
-	public String getNoCliente() {
+	public int getNoCliente() {
 		return noCliente;
 	}
 
-	public void setNoCliente(String noCliente) {
+	public void setNoCliente(int noCliente) {
 		this.noCliente = noCliente;
 	}
 
@@ -67,7 +67,7 @@ public class MembresiaCliente {
 			if(obj instanceof MembresiaCliente){
 				MembresiaCliente membresia = (MembresiaCliente) obj; 
 				if(membresia.fechaAlta.equals(this.fechaAlta)
-					&& membresia.noCliente.equals(this.noCliente)
+					&& membresia.noCliente == this.noCliente
 					&& membresia.nombre.equals(this.nombre))
 					return true; 
 			}				

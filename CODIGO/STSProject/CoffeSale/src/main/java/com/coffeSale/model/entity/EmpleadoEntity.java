@@ -10,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.coffeSale.model.dto.Empleado;
 
 @Entity 
 @Table(name="EMPLEADO")
@@ -132,16 +129,4 @@ public class EmpleadoEntity implements Serializable{
 				+ apmat + ", contratacion=" + contratacion + ", salario="
 				+ salario + "}";
 	}
-	
-	@Transient
-	public Empleado getEmpleado() {
-		return new Empleado(
-				this.nombre,
-				this.appat,
-				this.apmat,
-				this.id
-				);
-	}
-	
-	
 }

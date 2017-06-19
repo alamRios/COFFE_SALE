@@ -4,21 +4,25 @@ public class Producto {
 	private String nombre; 
 	private String identificador; 
 	private double costo;
+	private int codigoLinea;
 	
 	public Producto(){
-		this("", "", 0.0);
+		this("", "", 0.0,0);
 	}
-	public Producto(String nombre, String identificador, double costo) {
+	public Producto(String nombre, String identificador, 
+			double costo, int codigoLinea) {
 		super();
 		this.nombre = nombre;
 		this.identificador = identificador;
 		this.costo = costo;
+		this.codigoLinea = codigoLinea; 
 	}
 	public Producto(Producto producto){
 		this(
 			producto.nombre,
 			producto.identificador,
-			producto.costo
+			producto.costo,
+			producto.codigoLinea
 		);
 	}
 
@@ -44,6 +48,14 @@ public class Producto {
 
 	public void setCosto(double costo) {
 		this.costo = costo;
+	}
+	
+
+	public int getCodigoLinea() {
+		return codigoLinea;
+	}
+	public void setCodigoLinea(int codigoLinea) {
+		this.codigoLinea = codigoLinea;
 	}
 
 	@Override

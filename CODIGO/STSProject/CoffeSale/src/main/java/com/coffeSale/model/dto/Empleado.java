@@ -4,19 +4,23 @@ public class Empleado {
 	private String nombre; 
 	private String apPaterno; 
 	private String apMaterno; 
+	private String puesto; 
+	private String correo; 
 	private int codigoEmpleado;
 	
 	public Empleado(){
-		this("","","",0);
+		this("","","",0,"","");
 	}
 	
 	public Empleado(String nombre, String apPaterno, String apMaterno,
-			int codigoEmpleado) {
+			int codigoEmpleado, String puesto, String correo) {
 		super();
 		this.nombre = nombre;
 		this.apPaterno = apPaterno;
 		this.apMaterno = apMaterno;
 		this.codigoEmpleado = codigoEmpleado;
+		this.puesto = puesto; 
+		this.correo = correo; 
 	}
 	
 	public Empleado(Empleado empleado){
@@ -24,7 +28,9 @@ public class Empleado {
 			empleado.nombre,
 			empleado.apPaterno,
 			empleado.apMaterno,
-			empleado.codigoEmpleado
+			empleado.codigoEmpleado,
+			empleado.puesto, 
+			empleado.correo
 		);
 	}
 
@@ -58,6 +64,22 @@ public class Empleado {
 
 	public void setCodigoEmpleado(int codigoEmpleado) {
 		this.codigoEmpleado = codigoEmpleado;
+	}
+
+	public String getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(String puesto) {
+		this.puesto = puesto;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	@Override

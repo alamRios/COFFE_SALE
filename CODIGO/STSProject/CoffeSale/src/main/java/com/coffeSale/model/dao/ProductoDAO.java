@@ -10,4 +10,8 @@ public interface ProductoDAO extends GenericDAO<ProductoEntity> {
 	public Producto findById_DTO(int id) throws Exception; 
 	public List<Producto> findByNombre_DTO(String nombre) throws Exception;
 	public List<Producto> findByCosto_DTO(double costo) throws Exception;
+	public List<Producto> findByLinea(int lineaId) throws Exception;
+	public Producto persist(Producto producto) throws Exception;
+	public void delete(Producto producto) throws Exception;
+	public Producto update(Producto producto) throws Exception;
 }

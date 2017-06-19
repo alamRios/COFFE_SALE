@@ -11,4 +11,6 @@ public interface PlazaDAO extends GenericDAO<PlazaEntity>{
 	public Plaza findById_DTO(int id) throws Exception; 
 	public List<Plaza> findByPlantilla(Plaza plaza) throws Exception;
 	public List<Plaza> findByEmpleado(Empleado empleado) throws Exception;
+	public void persist(Plaza plaza) throws Exception;
+	public Plaza findByFolio(String plazaId) throws Exception;
 }

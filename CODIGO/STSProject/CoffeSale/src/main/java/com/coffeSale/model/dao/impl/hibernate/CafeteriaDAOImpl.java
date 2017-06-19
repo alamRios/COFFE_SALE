@@ -10,6 +10,7 @@ import org.hibernate.classic.Session;
 
 import com.coffeSale.model.dao.CafeteriaDAO;
 import com.coffeSale.model.dto.Cafeteria;
+import com.coffeSale.model.dto.Empleado;
 import com.coffeSale.model.dto.Gaveta;
 import com.coffeSale.model.dto.Habitacion;
 import com.coffeSale.model.dto.Inventario;
@@ -19,16 +20,19 @@ import com.coffeSale.model.dto.Producto;
 import com.coffeSale.model.dto.Venta;
 import com.coffeSale.model.dto.VentaEnTienda;
 import com.coffeSale.model.entity.CafeteriaEntity;
+import com.coffeSale.model.entity.DetalleVentaEntity;
 import com.coffeSale.model.entity.GavetaEntity;
 import com.coffeSale.model.entity.HabitacionEntity;
 import com.coffeSale.model.entity.InventarioEntity;
 import com.coffeSale.model.entity.PlantillaEntity;
 import com.coffeSale.model.entity.PlazaEntity;
 import com.coffeSale.model.entity.ProductoEntity;
+import com.coffeSale.model.entity.PuestoEntity;
 import com.coffeSale.model.entity.VentaEntity;
 import com.coffeSale.model.entity.MarcaEntity;
 import com.coffeSale.model.entity.DireccionEntity;
 import com.coffeSale.model.entity.EmpleadoEntity;
+import com.coffeSale.model.entity.ClienteEntity;
 
 public class CafeteriaDAOImpl implements CafeteriaDAO{
 	private SessionFactory sessionFactory;
@@ -106,9 +110,18 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 										.setParameter("plantillaId",plantillaE.getId())
 										.list();
 				for(PlazaEntity plazaE : plantillaPlazasEntity){
+
+					EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+							session.get(EmpleadoEntity.class, plazaE.getEmpleadoId());
+					PuestoEntity puestoEntity = (PuestoEntity)
+							session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+					Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+							empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+							empleadoEntity.getId(),puestoEntity.getNombre(),
+							empleadoEntity.getCorreo());
 					plantillaPlazas.add(
 							new Plaza(
-								((EmpleadoEntity)session.get(EmpleadoEntity.class,plazaE.getEmpleadoId())).getEmpleado(),
+								empleadoDTO,
 								String.valueOf(plazaE.getFolio()),
 								plazaE.isActiva()
 							)
@@ -121,12 +134,40 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 					.setParameter("cafeteriaId", cafeteria.getId())
 					.list();
 			for(VentaEntity ventaE : ventasEntity){
+				List<Producto> productosDTO = new ArrayList<Producto>();
+				List<DetalleVentaEntity> detVentas = session.createQuery("from DetalleVentaEntity"
+						+ " where ventaId = :ventaId")
+						.setParameter("ventaId", ventaE.getId())
+						.list();
+				List<ProductoEntity> productos = new ArrayList<ProductoEntity>();
+				for(DetalleVentaEntity detVenta : detVentas){
+					productos = 
+							session.createQuery("from ProductoEntity"
+							+ " where id = :productoId")
+							.setParameter("productoId", detVenta.getProductoId())
+							.list();
+				}
+				for(ProductoEntity productoE : productos){
+					productosDTO.add(productoE.getProducto());
+				}
+
+				EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+						session.get(EmpleadoEntity.class, ventaE.getEmpleadoId());
+				PuestoEntity puestoEntity = (PuestoEntity)
+						session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+				Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+						empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+						empleadoEntity.getId(),puestoEntity.getNombre(),
+						empleadoEntity.getCorreo());
+				
 				ventas.add(
 					new VentaEnTienda(
-						((EmpleadoEntity)session.get(EmpleadoEntity.class, ventaE.getEmpleadoId())).getEmpleado(),
+						empleadoDTO,
 						((GavetaEntity)session.get(GavetaEntity.class, ventaE.getGavetaId())).getGaveta(),
 						ventaE.getImporte(),
-						ventaE.getInicio()
+						ventaE.getInicio(),
+						productosDTO,
+						((ClienteEntity)session.get(ClienteEntity.class, ventaE.getCliente())).getCliente()
 					)
 				);
 			}
@@ -186,19 +227,30 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 	}
 
 	@Override
-	public void persist(Cafeteria cafeteria) throws Exception {
+	public Cafeteria persist(Cafeteria cafeteria) throws Exception {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		String direccion = cafeteria.getDireccion();
+		String [] direccionArray = direccion.split(",");
+		DireccionEntity direccionEntity = new DireccionEntity(); 
+			direccionEntity.setCalle(direccionArray[0]);
+			direccionEntity.setNumero(direccionArray[1]);
+			direccionEntity.setColonia(direccionArray[2]);
+			direccionEntity.setDelegacion(direccionArray[3]);
+			direccionEntity.setCiudad(direccionArray[4]);//Estado en js
+			direccionEntity.setPais(direccionArray[5]);
+		session.persist(direccionEntity);
 		CafeteriaEntity entity = new CafeteriaEntity(); 
-			entity.setAcepta_membresias(false);
+			entity.setAcepta_membresias(cafeteria.isAceptaMembresias());
 			entity.setNombre(cafeteria.getNombre());
-			entity.setEmail("");
-			entity.setDireccionId(1);
-			entity.setEstado("");
-			entity.setMarcaId(1);
+			entity.setEmail(cafeteria.getEmail());
+			entity.setDireccionId(direccionEntity.getId());
+			entity.setEstado(direccionEntity.getCiudad());
+			entity.setMarcaId(Integer.valueOf(cafeteria.getLinea()));
 		session.persist(entity);
 		session.getTransaction().commit();
 		session.close();
+		return cafeteria; 
 	}
 
 	@SuppressWarnings("unchecked")
@@ -246,9 +298,18 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 									.setParameter("plantillaId",plantillaE.getId())
 									.list();
 			for(PlazaEntity plazaE : plantillaPlazasEntity){
+
+				EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+						session.get(EmpleadoEntity.class, plazaE.getEmpleadoId());
+				PuestoEntity puestoEntity = (PuestoEntity)
+						session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+				Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+						empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+						empleadoEntity.getId(),puestoEntity.getNombre(),
+						empleadoEntity.getCorreo());
 				plantillaPlazas.add(
 						new Plaza(
-							((EmpleadoEntity)session.get(EmpleadoEntity.class,plazaE.getEmpleadoId())).getEmpleado(),
+							empleadoDTO,
 							String.valueOf(plazaE.getFolio()),
 							plazaE.isActiva()
 						)
@@ -261,12 +322,39 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 				.setParameter("cafeteriaId", cafeteria.getId())
 				.list();
 		for(VentaEntity ventaE : ventasEntity){
+			List<Producto> productosDTO = new ArrayList<Producto>();
+			List<DetalleVentaEntity> detVentas = session.createQuery("from DetalleVentaEntity"
+					+ " where ventaId = :ventaId")
+					.setParameter("ventaId", ventaE.getId())
+					.list();
+			List<ProductoEntity> productos = new ArrayList<ProductoEntity>();
+			for(DetalleVentaEntity detVenta : detVentas){
+				productos = 
+						session.createQuery("from ProductoEntity"
+						+ " where id = :productoId")
+						.setParameter("productoId", detVenta.getProductoId())
+						.list();
+			}
+			for(ProductoEntity productoE : productos){
+				productosDTO.add(productoE.getProducto());
+			}
+
+			EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+					session.get(EmpleadoEntity.class, ventaE.getEmpleadoId());
+			PuestoEntity puestoEntity = (PuestoEntity)
+					session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+			Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+					empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+					empleadoEntity.getId(),puestoEntity.getNombre(),
+					empleadoEntity.getCorreo());
 			ventas.add(
 				new VentaEnTienda(
-					((EmpleadoEntity)session.get(EmpleadoEntity.class, ventaE.getEmpleadoId())).getEmpleado(),
+					empleadoDTO,
 					((GavetaEntity)session.get(GavetaEntity.class, ventaE.getGavetaId())).getGaveta(),
 					ventaE.getImporte(),
-					ventaE.getInicio()
+					ventaE.getInicio(),
+					productosDTO,
+					((ClienteEntity)session.get(ClienteEntity.class, ventaE.getCliente())).getCliente()
 				)
 			);
 		}
@@ -347,9 +435,18 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 										.setParameter("plantillaId",plantillaE.getId())
 										.list();
 				for(PlazaEntity plazaE : plantillaPlazasEntity){
+
+					EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+							session.get(EmpleadoEntity.class, plazaE.getEmpleadoId());
+					PuestoEntity puestoEntity = (PuestoEntity)
+							session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+					Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+							empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+							empleadoEntity.getId(),puestoEntity.getNombre(),
+							empleadoEntity.getCorreo());
 					plantillaPlazas.add(
 							new Plaza(
-								((EmpleadoEntity)session.get(EmpleadoEntity.class,plazaE.getEmpleadoId())).getEmpleado(),
+								empleadoDTO,
 								String.valueOf(plazaE.getFolio()),
 								plazaE.isActiva()
 							)
@@ -362,12 +459,39 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 					.setParameter("cafeteriaId", cafeteria.getId())
 					.list();
 			for(VentaEntity ventaE : ventasEntity){
+				List<Producto> productosDTO = new ArrayList<Producto>();
+				List<DetalleVentaEntity> detVentas = session.createQuery("from DetalleVentaEntity"
+						+ " where ventaId = :ventaId")
+						.setParameter("ventaId", ventaE.getId())
+						.list();
+				List<ProductoEntity> productos = new ArrayList<ProductoEntity>();
+				for(DetalleVentaEntity detVenta : detVentas){
+					productos = 
+							session.createQuery("from ProductoEntity"
+							+ " where id = :productoId")
+							.setParameter("productoId", detVenta.getProductoId())
+							.list();
+				}
+				for(ProductoEntity productoE : productos){
+					productosDTO.add(productoE.getProducto());
+				}
+
+				EmpleadoEntity empleadoEntity = (EmpleadoEntity)
+						session.get(EmpleadoEntity.class, ventaE.getEmpleadoId());
+				PuestoEntity puestoEntity = (PuestoEntity)
+						session.get(PuestoEntity.class, empleadoEntity.getPuestoId());
+				Empleado empleadoDTO = new Empleado(empleadoEntity.getNombre(),
+						empleadoEntity.getAppat(),empleadoEntity.getApmat(),
+						empleadoEntity.getId(),puestoEntity.getNombre(),
+						empleadoEntity.getCorreo());
 				ventas.add(
 					new VentaEnTienda(
-						((EmpleadoEntity)session.get(EmpleadoEntity.class, ventaE.getEmpleadoId())).getEmpleado(),
+						empleadoDTO,
 						((GavetaEntity)session.get(GavetaEntity.class, ventaE.getGavetaId())).getGaveta(),
 						ventaE.getImporte(),
-						ventaE.getInicio()
+						ventaE.getInicio(),
+						productosDTO,
+						((ClienteEntity)session.get(ClienteEntity.class, ventaE.getCliente())).getCliente()
 					)
 				);
 			}
@@ -403,5 +527,48 @@ public class CafeteriaDAOImpl implements CafeteriaDAO{
 			);
 		}
 		return cafeteriasDTO;
+	}
+
+	@Override
+	public Cafeteria update(Cafeteria cafeteria) throws Exception {
+		Session session = sessionFactory.openSession();
+		CafeteriaEntity cafeteriaEntity = (CafeteriaEntity)
+				session.get(CafeteriaEntity.class, 
+						Integer.valueOf(cafeteria.getIdentificador()));
+		DireccionEntity direccionEntity = (DireccionEntity)
+				session.get(DireccionEntity.class, cafeteriaEntity.getDireccionId());
+		
+		String direccion = cafeteria.getDireccion();
+		String [] direccionArray = direccion.split(",");
+		session.createQuery(""
+				+ "UPDATE DireccionEntity "
+				+ "set calle = :calle "
+				+ ", ciudad = :ciudad "
+				+ ", colonia = :colonia "
+				+ ", delegacion = :delegacion"
+				+ ", numero = :numero"
+				+ ", pais = :pais "
+				+ "where id = :direccionId")
+				.setParameter("calle", direccionArray[0])
+				.setParameter("numero",direccionArray[1])
+				.setParameter("colonia", direccionArray[2])
+				.setParameter("delegacion",direccionArray[3])
+				.setParameter("ciudad", direccionArray[4])
+				.setParameter("pais",direccionArray[5])
+				.setParameter("direccionId",direccionEntity.getId())
+				.executeUpdate();
+		session.createQuery("UPDATE CafeteriaEntity "
+				+ "set aceptaMembresias = :aceptaMembresias "
+				+ ", email = :email "
+				+ ", estado = :estado "
+				+ ", nombre = :nombre"
+				+ " WHERE id = :cafeteriaId")
+				.setParameter("aceptaMembresias", cafeteria.isAceptaMembresias())
+				.setParameter("email", cafeteria.getEmail())
+				.setParameter("estado", direccionEntity.getCiudad())
+				.setParameter("nombre",cafeteria.getNombre())
+				.setParameter("cafeteriaId", Integer.valueOf(cafeteria.getIdentificador()))
+				.executeUpdate();
+		return cafeteria; 
 	}
 }
